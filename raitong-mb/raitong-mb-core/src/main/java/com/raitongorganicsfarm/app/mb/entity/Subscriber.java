@@ -9,6 +9,5 @@ import org.springframework.roo.addon.tostring.RooToString;
 @RooMongoEntity(identifierType = String.class)
 public class Subscriber {
 	private String customerNo;
-	private String renewal;
 	private String name;
 }

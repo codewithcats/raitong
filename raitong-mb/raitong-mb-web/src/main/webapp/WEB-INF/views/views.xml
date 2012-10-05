@@ -20,5 +20,9 @@
   <definition name="index" extends="bootstrap">
   
   </definition>
+  
+  <definition name="viewSubscriber" extends="bootstrap">
+  	
+  </definition>
 
 </tiles-definitions>

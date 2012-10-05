@@ -15,14 +15,6 @@ privileged aspect Subscriber_Roo_JavaBean {
         this.customerNo = customerNo;
     }
     
-    public String Subscriber.getRenewal() {
-        return this.renewal;
-    }
-    
-    public void Subscriber.setRenewal(String renewal) {
-        this.renewal = renewal;
-    }
-    
     public String Subscriber.getName() {
         return this.name;
     }
