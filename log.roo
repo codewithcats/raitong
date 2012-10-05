@@ -1,0 +1,17 @@
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-04 19:37:41
+project --topLevelPackage com.raitongorganicsfarm.app --projectName raitong --java 6 --packaging POM
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-04 19:37:42
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-04 19:37:59
+module create --topLevelPackage com.raitongorganicsfarm.app --moduleName raitong-core
+mongo setup 
+module focus --moduleName ~ 
+module create --moduleName raitong-mb --topLevelPackage ~ --packaging POM
+module create --moduleName raitong-mb-core --topLevelPackage ~.mb
+mongo setup 
+entity mongo --class ~.entity.Subscriber --identifierType java.lang.String --testAutomatically true
+repository mongo --interface ~.repository.SubscriberRepository --entity ~.entity.Subscriber
+module focus --moduleName ~
+module focus --moduleName raitong-mb
+module create --topLevelPackage com.raitongorganicsfarm.app.mb.web --moduleName raitong-mb-web
+web mvc setup
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-04 21:59:26
