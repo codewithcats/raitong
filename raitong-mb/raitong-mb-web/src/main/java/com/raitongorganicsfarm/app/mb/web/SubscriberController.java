@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.raitongorganicsfarm.app.mb.entity.Subscriber;
 import com.raitongorganicsfarm.app.mb.repository.SubscriberRepository;
@@ -15,12 +14,16 @@ public class SubscriberController {
 
 	@Autowired
 	private SubscriberRepository subscriberRepository;
+	private Subscriber subscriber;
 
 	@RequestMapping(method = RequestMethod.POST, value = "/subscribers/**")
-	public ModelAndView save(@ModelAttribute Subscriber subscriber) {
-		subscriber = subscriberRepository.save(subscriber);
-		ModelAndView mv = new ModelAndView("subscriberView");
-		mv.addObject("subscriber", subscriber);
-		return mv;
+	public String create(@ModelAttribute Subscriber subscriber) {
+		this.subscriber = subscriberRepository.save(subscriber);
+		return "viewSubscriber";
 	}
+	
+	public Subscriber getSubscriber() {
+		return subscriber;
+	}
+	
 }
