@@ -1,0 +1,14 @@
+<div class="container" xmlns:spring="http://www.springframework.org/tags">
+	<div class="row">
+		<spring:url value="/subscribers" var="create_subscriber_url"></spring:url>
+		<form action="${create_subscriber_url}" method="post">
+			<label>Customer No.</label>
+			<input type="text" name="customerNo"/>
+			<label>Name</label>
+			<input type="text" name="name"/>
+			<div>
+				<input class="btn btn-primary" type="submit" value="Save"/>
+			</div>
+		</form>
+	</div>
+</div>
