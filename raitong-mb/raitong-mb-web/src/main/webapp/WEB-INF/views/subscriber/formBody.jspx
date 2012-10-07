@@ -6,6 +6,10 @@
 			<input type="text" name="customerNo"/>
 			<label>Name</label>
 			<input type="text" name="name"/>
+			<label>Address</label>
+			<textarea name="address" rows="3"><!--  --></textarea>
+			<label>Phone</label>
+			<input type="text" name="phone" />
 			<div>
 				<input class="btn btn-primary" type="submit" value="Save"/>
 			</div>

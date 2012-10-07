@@ -18,3 +18,7 @@ web mvc setup
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-05 20:31:59
 module focus --moduleName raitong-mb/raitong-mb-web 
 class --class com.raitongorganicsfarm.app.mb.web.SubscriberController
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-05 21:19:30
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-07 08:50:28
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-07 11:00:32
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-07 16:12:13

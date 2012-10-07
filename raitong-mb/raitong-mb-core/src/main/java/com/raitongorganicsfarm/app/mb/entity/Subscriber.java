@@ -10,4 +10,6 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class Subscriber {
 	private String customerNo;
 	private String name;
+	private String address;
+	private String phone;
 }

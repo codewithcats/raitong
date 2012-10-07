@@ -29,9 +29,16 @@ privileged aspect SubscriberDataOnDemand_Roo_DataOnDemand {
     
     public Subscriber SubscriberDataOnDemand.getNewTransientSubscriber(int index) {
         Subscriber obj = new Subscriber();
+        setAddress(obj, index);
         setCustomerNo(obj, index);
         setName(obj, index);
+        setPhone(obj, index);
         return obj;
+    }
+    
+    public void SubscriberDataOnDemand.setAddress(Subscriber obj, int index) {
+        String address = "address_" + index;
+        obj.setAddress(address);
     }
     
     public void SubscriberDataOnDemand.setCustomerNo(Subscriber obj, int index) {
@@ -42,6 +49,11 @@ privileged aspect SubscriberDataOnDemand_Roo_DataOnDemand {
     public void SubscriberDataOnDemand.setName(Subscriber obj, int index) {
         String name = "name_" + index;
         obj.setName(name);
+    }
+    
+    public void SubscriberDataOnDemand.setPhone(Subscriber obj, int index) {
+        String phone = "phone_" + index;
+        obj.setPhone(phone);
     }
     
     public Subscriber SubscriberDataOnDemand.getSpecificSubscriber(int index) {

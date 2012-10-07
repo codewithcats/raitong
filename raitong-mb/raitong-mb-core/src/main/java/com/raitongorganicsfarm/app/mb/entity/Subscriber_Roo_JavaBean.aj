@@ -23,4 +23,20 @@ privileged aspect Subscriber_Roo_JavaBean {
         this.name = name;
     }
     
+    public String Subscriber.getAddress() {
+        return this.address;
+    }
+    
+    public void Subscriber.setAddress(String address) {
+        this.address = address;
+    }
+    
+    public String Subscriber.getPhone() {
+        return this.phone;
+    }
+    
+    public void Subscriber.setPhone(String phone) {
+        this.phone = phone;
+    }
+    
 }
