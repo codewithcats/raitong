@@ -22,3 +22,9 @@ class --class com.raitongorganicsfarm.app.mb.web.SubscriberController
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-07 08:50:28
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-07 11:00:32
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-07 16:12:13
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-07 17:03:25
+cloud foundry login 
+cloud foundry deploy --appName raitong --path CREATE
+cloud foundry start app --appName raitong
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-07 17:20:44
