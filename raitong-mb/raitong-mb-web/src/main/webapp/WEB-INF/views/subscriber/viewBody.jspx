@@ -1,0 +1,5 @@
+<div class="container" xmlns:spring="http://www.springframework.org/tags">
+	<div class="row">
+		<h1><spring:bind path="subscriber.name" /></h1>
+	</div>
+</div>
