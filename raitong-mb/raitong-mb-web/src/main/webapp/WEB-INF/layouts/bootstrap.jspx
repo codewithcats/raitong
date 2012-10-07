@@ -15,6 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />	
 			
 		<util:load-style />
+		<util:load-js />
 		
 		<title><spring:message code="application_name" /></title>
 	</head>
@@ -22,7 +23,6 @@
   	<body>
 	    <tiles:insertAttribute name="nav" />
 		<tiles:insertAttribute name="body" />
-		<util:load-js />	
 	</body>
 	
 	

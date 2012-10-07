@@ -3,6 +3,8 @@ package com.raitongorganicsfarm.app.mb.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +43,13 @@ public class SubscriberController {
 		ModelAndView mv = new ModelAndView("subscribers-info");
 		mv.addObject("subscriber", subscriber);
 		return mv;
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = "/subscribers/{customerNo}")
+	public ResponseEntity<String> delete(@PathVariable String customerNo) {
+		this.subscriberRepository.removeByCustomerNo(customerNo);
+		ResponseEntity<String> res  = new ResponseEntity<String>(HttpStatus.OK);
+		return res;
 	}
 
 }
