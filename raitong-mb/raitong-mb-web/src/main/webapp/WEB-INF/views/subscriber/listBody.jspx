@@ -1,0 +1,8 @@
+<div class="container" xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<h1>Subscribers</h1>
+	<ul>
+		<c:forEach var="s" items="${subscribers}">
+			<li>${s.customerNo} ${s.name}</li>
+		</c:forEach>
+	</ul>
+</div>

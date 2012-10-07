@@ -28,3 +28,17 @@ cloud foundry deploy --appName raitong --path CREATE
 cloud foundry start app --appName raitong
 exit
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-07 17:20:44
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-07 17:53:01
+cloud foundry login 
+cloud foundry deploy --appName raitong --path CREATE
+cloud foundry start app --appName raitong
+cloud foundry deploy --appName raitong --path CREATE
+cloud foundry start app --appName raitong
+cloud foundry restart app --appName raitong
+cloud foundry create service --serviceName mongo --serviceType mongodb
+cloud foundry bind service --serviceName mongo --appName raitong
+cloud foundry restart app --appName raitong
+cloud foundry deploy --appName raitong --path CREATE
+cloud foundry restart app --appName raitong
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-07 19:00:30

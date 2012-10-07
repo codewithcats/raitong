@@ -21,12 +21,15 @@
   
   </definition>
   
-  <definition name="viewSubscriber" extends="bootstrap">
+  <definition name="subscribers-view" extends="bootstrap">
   	<put-attribute name="body" value="/WEB-INF/views/subscriber/viewBody.jspx"/>
   </definition>
   
   <definition name="subscribers-create" extends="bootstrap">
   	<put-attribute name="body" value="/WEB-INF/views/subscriber/formBody.jspx"/>
+  </definition>
+  <definition name="subscribers-list" extends="bootstrap">
+  	<put-attribute name="body" value="/WEB-INF/views/subscriber/listBody.jspx"/>
   </definition>
 
 </tiles-definitions>
