@@ -1,0 +1,10 @@
+<div xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<div class="customer-header">
+		<p style="color:#999; margin-bottom: 0;"><c:out value="${subscriber.customerNo}"/></p>
+		<h3 style="margin-top: 0;">
+			<c:out value="${subscriber.name}"/>
+		</h3>
+	</div>
+	<div><strong>Address</strong><p><c:out value="${subscriber.address}"/></p></div>
+	<div><strong>Phone</strong><p><c:out value="${subscriber.phone}"/></p></div>
+</div>

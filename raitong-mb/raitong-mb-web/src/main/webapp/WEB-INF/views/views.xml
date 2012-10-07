@@ -21,6 +21,10 @@
   
   </definition>
   
+  <definition name="subscribers-info" extends="bootstrap">
+  	<put-attribute name="body" value="/WEB-INF/views/subscriber/infoBody.jspx"/>
+  </definition>
+  
   <definition name="subscribers-view" extends="bootstrap">
   	<put-attribute name="body" value="/WEB-INF/views/subscriber/viewBody.jspx"/>
   </definition>

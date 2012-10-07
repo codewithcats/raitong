@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,11 +27,19 @@ public class SubscriberController {
 		return mv;
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/subscribers/**")
+	@RequestMapping(method = RequestMethod.GET, value = "/subscribers")
 	public ModelAndView list() {
 		List<Subscriber> subscribers = this.subscriberRepository.findAll();
 		ModelAndView mv = new ModelAndView("subscribers-list");
 		mv.addObject("subscribers", subscribers);
+		return mv;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/subscribers/{customerNo}")
+	public ModelAndView info(@PathVariable String customerNo) {
+		Subscriber subscriber = this.subscriberRepository.findByCustomerNo(customerNo);
+		ModelAndView mv = new ModelAndView("subscribers-info");
+		mv.addObject("subscriber", subscriber);
 		return mv;
 	}
 

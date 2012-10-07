@@ -3,7 +3,6 @@
 
 package com.raitongorganicsfarm.app.mb.entity;
 
-import com.raitongorganicsfarm.app.mb.entity.SubscriberDataOnDemand;
 import com.raitongorganicsfarm.app.mb.entity.SubscriberIntegrationTest;
 import com.raitongorganicsfarm.app.mb.repository.SubscriberRepository;
 import java.util.List;
@@ -19,9 +18,6 @@ privileged aspect SubscriberIntegrationTest_Roo_IntegrationTest {
     declare @type: SubscriberIntegrationTest: @RunWith(SpringJUnit4ClassRunner.class);
     
     declare @type: SubscriberIntegrationTest: @ContextConfiguration(locations = "classpath:/META-INF/spring/applicationContext*.xml");
-    
-    @Autowired
-    private SubscriberDataOnDemand SubscriberIntegrationTest.dod;
     
     @Autowired
     SubscriberRepository SubscriberIntegrationTest.subscriberRepository;
