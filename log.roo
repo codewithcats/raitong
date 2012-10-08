@@ -44,3 +44,14 @@ exit
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-07 19:00:30
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-07 19:40:09
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-07 20:25:26
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-07 21:12:37
+cloud foundry login 
+cloud foundry restart app --appName raitong
+cloud foundry restart app --appName raitong
+cloud foundry stop app --appName raitong
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-07 21:18:20
+cloud foundry login 
+cloud foundry deploy --appName raitong --path raitong-mb/raitong-mb-web/target/raitong-mb-web-0.1.0.BUILD-SNAPSHOT.war
+cloud foundry start app --appName raitong
+exit
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-07 21:22:31
