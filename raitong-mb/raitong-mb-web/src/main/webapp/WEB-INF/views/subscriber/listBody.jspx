@@ -1,23 +1,30 @@
 <div class="container" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags">
 	<h1 class="page-header"><i class="icon-group">&#160;</i>Subscribers &#160;</h1>
-	
+	<div class="span12" style="margin:-12px 0 12px 0;">
+		<spring:url value="/subscribers-create" var="subscriber_create_url"/>
+		<a href="${subscriber_create_url}"><i class="icon-plus">&#160;</i>New Subscriber</a>
+	</div>
 	<table class="table">
 		<thead>
 			<tr>
-				<th style="width:150px;">Customer No.</th>
+				<th style="width:120px;">Customer No.</th>
 				<th>Name</th>
-				<th></th>
+				<th style="width:42px;"></th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${subscribers}" var="s">
 			<spring:url value="/subscribers/${s.customerNo}" var="url" />
 			<tr>
-				<td>${s.customerNo}</td>
+				<td>
+					${s.customerNo}
+				</td>
 				<td>${s.name}</td>
 				<td>
-					<a href="${url}" rel="tooltip" title="Detail"><i class="icon-user">&#160;</i></a>&#160;&#160;
-					<a class="del-subscriber-link" href="${url}" rel="tooltip" title="Delete"><i class="icon-remove">&#160;</i></a>
+					<div class="list-actions">
+						<a href="${url}" rel="tooltip" title="Detail"><i class="icon-user">&#160;</i></a>&#160;
+						<a class="del-subscriber-link" href="${url}" rel="tooltip" title="Delete"><i class="icon-remove">&#160;</i></a>
+					</div>
 				</td>
 			</tr>
 			</c:forEach>
@@ -29,7 +36,7 @@ $('a.del-subscriber-link').click(function(e) {
 	e.preventDefault();
 	$.ajax({
 		url: this.href,
-		type: "DELETE",
+		type: "DELETE",	
 		success: function() {
 			location.reload();
 		}

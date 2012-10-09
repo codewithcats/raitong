@@ -1,8 +1,8 @@
 <div class="container" xmlns:spring="http://www.springframework.org/tags">
 	<h2 class="page-header"><i class="icon-plus">&#160;</i>New Subscriber</h2>
 	<div class="row">
-		<spring:url value="/subscribers" var="create_subscriber_url"></spring:url>
-		<form id="create-subscriber-form" action="${create_subscriber_url}" method="post">
+		<spring:url value="/subscribers" var="subscribers_url"></spring:url>
+		<form id="create-subscriber-form" action="${subscribers_url}" method="post">
 			<label>Name</label>
 			<input class="span3" type="text" name="name"/>
 			<label>Customer No.</label>			
@@ -11,8 +11,9 @@
 			<textarea class="span3" name="address" rows="3"><!--  --></textarea>
 			<label>Phone</label>
 			<input class="span3" type="text" name="phone" />
-			<div>
-				<button class="btn btn-primary span2"><i class="icon-ok">&#160;</i>Save</button>
+			<div class="form-actions">
+				<button class="btn btn-primary"><i class="icon-ok">&#160;</i>Save</button>&#160;
+				<a class="btn" href="${subscribers_url}"><i class="icon-remove">&#160;</i>Cancel</a>
 			</div>
 		</form>
 	</div>

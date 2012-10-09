@@ -1,8 +1,15 @@
+body {
+	padding-bottom: 12px;
+}
 .navbar-inner {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	border-radius: 0px;
 }
-#create-subscriber-form input{
-	
+
+.list-actions {
+	padding: 6px 12px;
+	background-color: #EEE;
+	width: 38px;
+	border-radius: 3px;
 }
