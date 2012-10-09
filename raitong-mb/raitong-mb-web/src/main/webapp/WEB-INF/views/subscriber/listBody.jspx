@@ -16,7 +16,7 @@
 				<td>${s.customerNo}</td>
 				<td>${s.name}</td>
 				<td>
-					<a href="${url}" rel="tooltip" title="Detail"><i class="icon-list">&#160;</i></a>&#160;&#160;
+					<a href="${url}" rel="tooltip" title="Detail"><i class="icon-user">&#160;</i></a>&#160;&#160;
 					<a class="del-subscriber-link" href="${url}" rel="tooltip" title="Delete"><i class="icon-remove">&#160;</i></a>
 				</td>
 			</tr>

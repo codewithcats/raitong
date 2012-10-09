@@ -1,10 +1,19 @@
-<div xmlns:c="http://java.sun.com/jsp/jstl/core">
-	<div class="customer-header">
-		<p style="color:#999; margin-bottom: 0;"><c:out value="${subscriber.customerNo}"/></p>
-		<h3 style="margin-top: 0;">
-			<c:out value="${subscriber.name}"/>
-		</h3>
+<div class="container" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags">
+	<div class="row">
+		<div class="span12">
+			<h1 class="page-header">
+				<i class="icon-user">&#160;</i>${subscriber.name}
+			</h1>
+			<div><strong>Customer No.</strong></div>
+			<p>${subscriber.customerNo}</p>
+			<div><strong>Address</strong></div>
+			<p>${subscriber.address}</p>
+			<div><strong>Phone</strong></div>
+			<p>${subscriber.phone}</p>
+		</div>
 	</div>
-	<div><strong>Address</strong><p><c:out value="${subscriber.address}"/></p></div>
-	<div><strong>Phone</strong><p><c:out value="${subscriber.phone}"/></p></div>
+	<div class="row">
+		<spring:url value="/subscribers" var="list_url" />
+		<a class="btn span2" href="${list_url}"><i class="icon-list">&#160;</i>Back to List</a>
+	</div>
 </div>
