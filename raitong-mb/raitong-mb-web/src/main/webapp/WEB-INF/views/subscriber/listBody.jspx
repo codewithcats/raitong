@@ -1,5 +1,5 @@
 <div class="container" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:spring="http://www.springframework.org/tags">
-	<h1>Subscribers</h1>
+	<h1 class="page-header">Subscribers &#160;<small>click to see details</small></h1>
 	<ul>
 		<c:forEach var="s" items="${subscribers}">
 			<spring:url value="/subscribers/${s.customerNo}" var="url" />
