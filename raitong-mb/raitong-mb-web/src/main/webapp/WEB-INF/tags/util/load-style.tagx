@@ -3,8 +3,10 @@
   <jsp:output omit-xml-declaration="yes" />
   <spring:url value="/resources/twitter-bootstrap/css/bootstrap.min.css" var="bootstrap_css_url"/>
   <spring:url value="/resources/styles/mb.css" var="mb_css_url"/>
+  <spring:url value="/resources/fontawesome/css/font-awesome.css" var="font_awesome_css_url" />
   
   <link rel="stylesheet" href="${bootstrap_css_url}" />
   <link rel="stylesheet" href="${mb_css_url}" />
+  <link rel="stylesheet" href="${font_awesome_css_url}" />
   
 </jsp:root>
