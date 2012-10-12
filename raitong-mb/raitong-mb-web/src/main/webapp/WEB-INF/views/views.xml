@@ -35,5 +35,9 @@
   <definition name="subscribers-list" extends="bootstrap">
   	<put-attribute name="body" value="/WEB-INF/views/subscriber/listBody.jspx"/>
   </definition>
+  
+  <definition name="ng-index" extends="bootstrap">
+  	<put-attribute name="body" value="/WEB-INF/views/ng/index.jsp" />
+  </definition>
 
 </tiles-definitions>

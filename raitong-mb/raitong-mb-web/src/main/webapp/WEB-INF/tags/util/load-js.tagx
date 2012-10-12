@@ -6,10 +6,12 @@ xmlns:spring="http://www.springframework.org/tags" version="2.0">
   <jsp:output omit-xml-declaration="yes" />
   <spring:url value="/resources/jquery-1.8.1.min.js" var="jquery_url"/>
   <spring:url value="/resources/angularjs/angular.min.js" var="angular_min_url"/>
+  <spring:url value="/resources/angularjs/app.js" var="angular_app_url"/>
   <spring:url value="/resources/twitter-bootstrap/js/bootstrap.min.js" var="bootstrap_js_url"/>
   
   <script src="${jquery_url}" type="text/javascript"><!-- --></script>
   <script src="${angular_min_url}" type="text/javascript"><!-- --></script>
+  <script src="${angular_app_url}" type="text/javascript"><!-- --></script>
   <script src="${bootstrap_js_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
   <script type="text/javascript">
   $(function() {
