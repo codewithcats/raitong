@@ -1,5 +1,5 @@
 'use strict';
-function RootCtrl($locationProvider) {
-	$locationProvider.html5Mode(true);
+function RootCtrl($location) {
+	//$location.html5Mode(true);
 }
-RootCtrl.$inject = ['$locationProvider'];
+RootCtrl.$inject = ['$location'];

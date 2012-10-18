@@ -4,6 +4,8 @@
 package com.raitongorganicsfarm.app.mb.entity;
 
 import com.raitongorganicsfarm.app.mb.entity.Subscriber;
+import com.raitongorganicsfarm.app.mb.entity.SubscriberGender;
+import java.util.Date;
 
 privileged aspect Subscriber_Roo_JavaBean {
     
@@ -37,6 +39,54 @@ privileged aspect Subscriber_Roo_JavaBean {
     
     public void Subscriber.setPhone(String phone) {
         this.phone = phone;
+    }
+    
+    public String Subscriber.getEmail() {
+        return this.email;
+    }
+    
+    public void Subscriber.setEmail(String email) {
+        this.email = email;
+    }
+    
+    public String Subscriber.getNote() {
+        return this.note;
+    }
+    
+    public void Subscriber.setNote(String note) {
+        this.note = note;
+    }
+    
+    public SubscriberGender Subscriber.getGender() {
+        return this.gender;
+    }
+    
+    public void Subscriber.setGender(SubscriberGender gender) {
+        this.gender = gender;
+    }
+    
+    public Date Subscriber.getBirthday() {
+        return this.birthday;
+    }
+    
+    public void Subscriber.setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+    
+    public String Subscriber.getNationality() {
+        return this.nationality;
+    }
+    
+    public void Subscriber.setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+    
+    public String Subscriber.getReferee() {
+        return this.referee;
+    }
+    
+    public void Subscriber.setReferee(String referee) {
+        this.referee = referee;
     }
     
 }

@@ -5,9 +5,13 @@ package com.raitongorganicsfarm.app.mb.entity;
 
 import com.raitongorganicsfarm.app.mb.entity.Subscriber;
 import com.raitongorganicsfarm.app.mb.entity.SubscriberDataOnDemand;
+import com.raitongorganicsfarm.app.mb.entity.SubscriberGender;
 import com.raitongorganicsfarm.app.mb.repository.SubscriberRepository;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
@@ -30,9 +34,15 @@ privileged aspect SubscriberDataOnDemand_Roo_DataOnDemand {
     public Subscriber SubscriberDataOnDemand.getNewTransientSubscriber(int index) {
         Subscriber obj = new Subscriber();
         setAddress(obj, index);
+        setBirthday(obj, index);
         setCustomerNo(obj, index);
+        setEmail(obj, index);
+        setGender(obj, index);
         setName(obj, index);
+        setNationality(obj, index);
+        setNote(obj, index);
         setPhone(obj, index);
+        setReferee(obj, index);
         return obj;
     }
     
@@ -41,9 +51,24 @@ privileged aspect SubscriberDataOnDemand_Roo_DataOnDemand {
         obj.setAddress(address);
     }
     
+    public void SubscriberDataOnDemand.setBirthday(Subscriber obj, int index) {
+        Date birthday = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
+        obj.setBirthday(birthday);
+    }
+    
     public void SubscriberDataOnDemand.setCustomerNo(Subscriber obj, int index) {
         String customerNo = "customerNo_" + index;
         obj.setCustomerNo(customerNo);
+    }
+    
+    public void SubscriberDataOnDemand.setEmail(Subscriber obj, int index) {
+        String email = "foo" + index + "@bar.com";
+        obj.setEmail(email);
+    }
+    
+    public void SubscriberDataOnDemand.setGender(Subscriber obj, int index) {
+        SubscriberGender gender = null;
+        obj.setGender(gender);
     }
     
     public void SubscriberDataOnDemand.setName(Subscriber obj, int index) {
@@ -51,9 +76,24 @@ privileged aspect SubscriberDataOnDemand_Roo_DataOnDemand {
         obj.setName(name);
     }
     
+    public void SubscriberDataOnDemand.setNationality(Subscriber obj, int index) {
+        String nationality = "nationality_" + index;
+        obj.setNationality(nationality);
+    }
+    
+    public void SubscriberDataOnDemand.setNote(Subscriber obj, int index) {
+        String note = "note_" + index;
+        obj.setNote(note);
+    }
+    
     public void SubscriberDataOnDemand.setPhone(Subscriber obj, int index) {
         String phone = "phone_" + index;
         obj.setPhone(phone);
+    }
+    
+    public void SubscriberDataOnDemand.setReferee(Subscriber obj, int index) {
+        String referee = "referee_" + index;
+        obj.setReferee(referee);
     }
     
     public Subscriber SubscriberDataOnDemand.getSpecificSubscriber(int index) {
