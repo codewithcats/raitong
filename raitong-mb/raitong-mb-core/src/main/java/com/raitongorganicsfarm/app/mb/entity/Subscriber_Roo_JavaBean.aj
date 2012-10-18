@@ -25,12 +25,20 @@ privileged aspect Subscriber_Roo_JavaBean {
         this.name = name;
     }
     
-    public String Subscriber.getAddress() {
-        return this.address;
+    public SubscriberGender Subscriber.getGender() {
+        return this.gender;
     }
     
-    public void Subscriber.setAddress(String address) {
-        this.address = address;
+    public void Subscriber.setGender(SubscriberGender gender) {
+        this.gender = gender;
+    }
+    
+    public String Subscriber.getNationality() {
+        return this.nationality;
+    }
+    
+    public void Subscriber.setNationality(String nationality) {
+        this.nationality = nationality;
     }
     
     public String Subscriber.getPhone() {
@@ -49,6 +57,14 @@ privileged aspect Subscriber_Roo_JavaBean {
         this.email = email;
     }
     
+    public String Subscriber.getAddress() {
+        return this.address;
+    }
+    
+    public void Subscriber.setAddress(String address) {
+        this.address = address;
+    }
+    
     public String Subscriber.getNote() {
         return this.note;
     }
@@ -57,28 +73,12 @@ privileged aspect Subscriber_Roo_JavaBean {
         this.note = note;
     }
     
-    public SubscriberGender Subscriber.getGender() {
-        return this.gender;
-    }
-    
-    public void Subscriber.setGender(SubscriberGender gender) {
-        this.gender = gender;
-    }
-    
     public Date Subscriber.getBirthday() {
         return this.birthday;
     }
     
     public void Subscriber.setBirthday(Date birthday) {
         this.birthday = birthday;
-    }
-    
-    public String Subscriber.getNationality() {
-        return this.nationality;
-    }
-    
-    public void Subscriber.setNationality(String nationality) {
-        this.nationality = nationality;
     }
     
     public String Subscriber.getReferee() {

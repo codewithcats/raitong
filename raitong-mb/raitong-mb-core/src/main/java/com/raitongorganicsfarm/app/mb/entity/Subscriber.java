@@ -14,12 +14,12 @@ import org.springframework.roo.addon.tostring.RooToString;
 public class Subscriber {
 	private String customerNo;
 	private String name;
-	private String address;
+	private SubscriberGender gender;
+	private String nationality;
 	private String phone;
 	private String email;
+	private String address;
 	private String note;
-	private SubscriberGender gender;
 	private Date birthday;
-	private String nationality;
 	private String referee;
 }

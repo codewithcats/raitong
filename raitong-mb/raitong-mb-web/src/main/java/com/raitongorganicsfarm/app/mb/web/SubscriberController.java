@@ -3,7 +3,6 @@ package com.raitongorganicsfarm.app.mb.web;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,15 +18,14 @@ import com.raitongorganicsfarm.app.mb.repository.SubscriberRepository;
 @Controller
 public class SubscriberController {
 
-	@Autowired
 	private SubscriberRepository subscriberRepository;
 
 	@RequestMapping(method = RequestMethod.POST, value = "/subscribers/**")
-	public ModelAndView create(@ModelAttribute Subscriber subscriber) {
+	public ResponseEntity<String> create(@ModelAttribute Subscriber subscriber) {
 		subscriber = this.subscriberRepository.save(subscriber);
-		ModelAndView mv = new ModelAndView("subscribers-view");
-		mv.addObject("subscriber", subscriber);
-		return mv;
+		String j = subscriber.toJson();
+		ResponseEntity<String> response = new ResponseEntity<String>(j, HttpStatus.CREATED);
+		return response;
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/subscribers")
@@ -51,6 +49,12 @@ public class SubscriberController {
 		this.subscriberRepository.removeByCustomerNo(customerNo);
 		ResponseEntity<String> res  = new ResponseEntity<String>(HttpStatus.OK);
 		return res;
+	}
+	
+	@Autowired
+	public void setSubscriberRepository(
+			SubscriberRepository subscriberRepository) {
+		this.subscriberRepository = subscriberRepository;
 	}
 
 }
