@@ -1,0 +1,31 @@
+<div class="container" ng-controller="CreateSubscriberCtrl">
+	<form>
+		<div>
+			<label>Name</label>
+			<input type="text" ng-model="s.name"/>
+			<label>Customer No</label>
+			<input type="text" ng-model="s.customerNo"/>
+			<label>Gender</label>
+			<input type="text" ng-model="s.gender"/>
+			<label>Nationality</label>
+			<input type="text" ng-model="s.nationality"/>
+			<label>Birthday</label>
+			<input type="text" ng-model="s.birthday"/>
+		</div>
+		<div>
+			<label>Address</label>
+			<textarea rows="3" ng-model="s.address"></textarea>
+			<label>Phone</label>
+			<input type="text" ng-model="s.phone"/>
+			<label>Email</label>
+			<input type="text" ng-model="s.email"/>
+		</div>
+		<div>
+			<label>Note</label>
+			<input type="text" ng-model="s.note"/>
+			<label>Referee</label>
+			<input type="text" ng-model="s.referee"/>
+		</div>
+		<button ng-click="create(s)">Create</button>
+	</form>
+</div>
