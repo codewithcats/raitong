@@ -21,12 +21,18 @@ function ListSubscriberCtrl($http, $scope){
 ListSubscriberCtrl.$inject = ['$http', '$scope'];
 
 function CreateSubscriberCtrl($scope, $http) {
+	
 	$scope.create = function(s) {
 		$http.post('subscribers', s)
 			.success(function(data) {
 				console.log(data);
 			});
 	};
+	
+	$scope.setGender = function(gender, subscriber) {
+		subscriber.gender = gender;
+	};
+	
 }
 
 CreateSubscriberCtrl.$inject = ['$scope', '$http'];
