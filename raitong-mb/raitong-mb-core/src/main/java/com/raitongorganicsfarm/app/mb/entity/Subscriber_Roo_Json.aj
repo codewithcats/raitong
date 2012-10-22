@@ -16,10 +16,6 @@ privileged aspect Subscriber_Roo_Json {
         return new JSONSerializer().exclude("*.class").serialize(this);
     }
     
-    public static Subscriber Subscriber.fromJsonToSubscriber(String json) {
-        return new JSONDeserializer<Subscriber>().use(null, Subscriber.class).deserialize(json);
-    }
-    
     public static String Subscriber.toJsonArray(Collection<Subscriber> collection) {
         return new JSONSerializer().exclude("*.class").serialize(collection);
     }

@@ -1,5 +1,8 @@
 package com.raitongorganicsfarm.app.mb.entity;
 
+import flexjson.JSONDeserializer;
+import flexjson.transformer.DateTransformer;
+
 import java.util.Date;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
@@ -22,4 +25,11 @@ public class Subscriber {
 	private String note;
 	private Date birthday;
 	private String referee;
+
+	public static Subscriber fromJsonToSubscriber(String json) {
+        return new JSONDeserializer<Subscriber>()
+        		.use(Date.class, new DateTransformer("ddMMyyyy"))
+        		.use(null, Subscriber.class)
+        		.deserialize(json);
+    }
 }
