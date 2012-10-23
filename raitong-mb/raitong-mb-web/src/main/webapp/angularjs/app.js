@@ -1,8 +1,8 @@
 'use strict';
-angular.module('raitong.mb', [])
+angular.module('raitong.mb', ['raitong.mb.directive'])
 	.config(['$routeProvider', function($routeProvider) {
 		$routeProvider
 			.when('/subscribers', {templateUrl: 'resources/angularjs/partial/subscriber/subscriber-list.html'})
 			.when('/subscribers/create', {templateUrl: 'resources/angularjs/partial/subscriber/subscriber-form.html'})
-			.otherwise({redirectTo: '/subscribers'});
+			.otherwise({redirectTo: '/subscribers/create'});
 	}]);

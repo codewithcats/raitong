@@ -1,45 +1,53 @@
 <div class="container" ng-controller="CreateSubscriberCtrl">
-	<form>
-		<div>
-			<label>Name</label>
-			<input type="text" ng-model="s.name"/>
-			<label>Customer No</label>
-			<div class="customer-no-wrapper">
-				<input type="text" ng-model="s.customerNo"/>
-				<div class="info info-success">
-					<i class="icon-ok">&nbsp;</i>available
+	<form id="create-subscriber-form" class="span6" wizard>
+		<div id="create-subscriber-carousel-wrapper" class="carousel slide" style="height: 320px;" data-interval="false">
+			<div class="carousel-inner">
+				<div class="active item">
+					<label>Name</label>
+					<input type="text" ng-model="s.name"/>
+					<label>Customer No</label>
+					<div class="customer-no-wrapper">
+						<input type="text" ng-model="s.customerNo"/>
+						<div class="info info-success">
+							<i class="icon-ok">&nbsp;</i>available
+						</div>
+						<div class="info info-error">
+							<i class="icon-remove">&nbsp;</i>duplicate
+						</div>
+					</div>
+					<label>Gender</label>
+					<div class="btn-group" data-toggle="buttons-radio">
+						<button class="btn" ng-click="setGender('MALE', s)">Male</button>
+						<button class="btn" ng-click="setGender('FEMALE', s)">Female</button>
+						<button class="btn" ng-click="setGender('NOT_SPECIFIC', s)">Not-Specific</button>
+					</div>
+					<label>Nationality</label>
+					<input type="text" ng-model="s.nationality"/>
+					<label>Birthday</label>
+					<div>
+						<select ng-model="s.birthday" ng-options="v.value for v in dateOptions"></select>
+					</div>
 				</div>
-				<div class="info info-error">
-					<i class="icon-remove">&nbsp;</i>duplicate
+				<div class="item">
+					<label>Address</label>
+					<textarea rows="3" ng-model="s.address"></textarea>
+					<label>Phone</label>
+					<input type="text" ng-model="s.phone"/>
+					<label>Email</label>
+					<input type="text" ng-model="s.email"/>
+				</div>
+				<div class="item">
+					<label>Note</label>
+					<input type="text" ng-model="s.note"/>
+					<label>Referee</label>
+					<input type="text" ng-model="s.referee"/>
+					<div>
+						<button ng-click="create(s)">Create</button>
+					</div>
 				</div>
 			</div>
-			<label>Gender</label>
-			<div class="btn-group" data-toggle="buttons-radio">
-				<button class="btn" ng-click="setGender('MALE', s)">Male</button>
-				<button class="btn" ng-click="setGender('FEMALE', s)">Female</button>
-				<button class="btn" ng-click="setGender('NOT_SPECIFIC', s)">Not-Specific</button>
-			</div>
-			<label>Nationality</label>
-			<input type="text" ng-model="s.nationality"/>
-			<label>Birthday</label>
-			<div>
-				<select ng-model="s.birthday" ng-options="v.value for v in dateOptions"></select>
-			</div>
+			<a class="carousel-control left" href="" data-slide="prev">&lsaquo;</a>
+  			<a class="carousel-control right" href="" data-slide="next">&rsaquo;</a>
 		</div>
-		<div>
-			<label>Address</label>
-			<textarea rows="3" ng-model="s.address"></textarea>
-			<label>Phone</label>
-			<input type="text" ng-model="s.phone"/>
-			<label>Email</label>
-			<input type="text" ng-model="s.email"/>
-		</div>
-		<div>
-			<label>Note</label>
-			<input type="text" ng-model="s.note"/>
-			<label>Referee</label>
-			<input type="text" ng-model="s.referee"/>
-		</div>
-		<button ng-click="create(s)">Create</button>
 	</form>
 </div>
