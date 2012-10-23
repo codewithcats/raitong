@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.raitongorganicsfarm.app.mb.entity.Subscriber;
 import com.raitongorganicsfarm.app.mb.repository.SubscriberRepository;
@@ -37,35 +36,53 @@ public class SubscriberController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/subscribers")
 	public ResponseEntity<String> list() {
-		List<Subscriber> subscribers = this.subscriberRepository.findAll();
-		String s = Subscriber.toJsonArray(subscribers);
-		ResponseEntity<String> response = new ResponseEntity<String>(s,
-				HttpStatus.OK);
-		return response;
+		try {
+			List<Subscriber> subscribers = this.subscriberRepository.findAll();
+			String s = Subscriber.toJsonArray(subscribers);
+			ResponseEntity<String> response = new ResponseEntity<String>(s, HttpStatus.OK);
+			return response;
+		} catch (RuntimeException r) {
+			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/subscribers/{customerNo}")
-	public ModelAndView info(@PathVariable String customerNo) {
-		Subscriber subscriber = this.subscriberRepository
-				.findByCustomerNo(customerNo);
-		ModelAndView mv = new ModelAndView("subscribers-info");
-		mv.addObject("subscriber", subscriber);
-		return mv;
+	public ResponseEntity<String> info(@PathVariable String customerNo) {
+		try {
+			if(customerNo == null || customerNo.trim().length() == 0) {
+				return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			}
+			Subscriber subscriber = this.subscriberRepository.findByCustomerNo(customerNo);
+			if(subscriber == null) {
+				return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			}
+			String s = subscriber.toJson();
+			ResponseEntity<String> resp = new ResponseEntity<String>(s, HttpStatus.OK);
+			return resp;
+		} catch(RuntimeException r) {
+			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/subscribers/{customerNo}")
 	public ResponseEntity<String> delete(@PathVariable String customerNo) {
-		this.subscriberRepository.removeByCustomerNo(customerNo);
-		ResponseEntity<String> res = new ResponseEntity<String>(HttpStatus.OK);
-		return res;
+		try {
+			if (customerNo != null && customerNo.trim().length() > 0) {
+				this.subscriberRepository.removeByCustomerNo(customerNo);
+				ResponseEntity<String> res = new ResponseEntity<String>(HttpStatus.OK);
+				return res;
+			}
+			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		} catch(RuntimeException r) {
+			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@Autowired
-	public void setSubscriberRepository(
-			SubscriberRepository subscriberRepository) {
+	public void setSubscriberRepository(SubscriberRepository subscriberRepository) {
 		this.subscriberRepository = subscriberRepository;
 	}
-	
+
 	public void setJsonUtil(JsonUtil<Subscriber> jsonUtil) {
 		this.jsonUtil = jsonUtil;
 	}
