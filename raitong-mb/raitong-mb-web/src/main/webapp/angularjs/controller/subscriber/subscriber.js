@@ -22,6 +22,10 @@ ListSubscriberCtrl.$inject = ['$http', '$scope'];
 
 function CreateSubscriberCtrl($scope, $http) {
 	
+	$scope.dateOptions = [
+	    {'value': '1'}
+	];
+	
 	$scope.create = function(s) {
 		$http.post('subscribers', s)
 			.success(function(data) {

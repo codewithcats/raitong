@@ -13,3 +13,21 @@ body {
 	width: 38px;
 	border-radius: 3px;
 }
+
+.customer-no-wrapper {
+	position: relative;
+}
+.customer-no-wrapper .info {
+	position: absolute;
+	top: 6px;
+	left: 250px;
+	width: 100px;
+}
+.customer-no-wrapper .info-success {
+	font-weight: bold;
+	color: #468847;
+}
+.customer-no-wrapper .info-error {
+	font-weight: bold;
+	color: #B94A48;
+}
