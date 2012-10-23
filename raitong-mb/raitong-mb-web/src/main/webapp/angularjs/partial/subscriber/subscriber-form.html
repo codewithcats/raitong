@@ -4,7 +4,15 @@
 			<label>Name</label>
 			<input type="text" ng-model="s.name"/>
 			<label>Customer No</label>
-			<input type="text" ng-model="s.customerNo"/>
+			<div class="customer-no-wrapper">
+				<input type="text" ng-model="s.customerNo"/>
+				<div class="info info-success">
+					<i class="icon-ok">&nbsp;</i>available
+				</div>
+				<div class="info info-error">
+					<i class="icon-remove">&nbsp;</i>duplicate
+				</div>
+			</div>
 			<label>Gender</label>
 			<div class="btn-group" data-toggle="buttons-radio">
 				<button class="btn" ng-click="setGender('MALE', s)">Male</button>
@@ -14,7 +22,9 @@
 			<label>Nationality</label>
 			<input type="text" ng-model="s.nationality"/>
 			<label>Birthday</label>
-			<input type="text" ng-model="s.birthday"/>
+			<div>
+				<select ng-model="s.birthday" ng-options="v.value for v in dateOptions"></select>
+			</div>
 		</div>
 		<div>
 			<label>Address</label>
