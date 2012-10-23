@@ -8,3 +8,5 @@ interface --class ~.repository.SubscriptionRepository
 repository mongo --interface ~.repository.SubscriptionRepository --entity ~.entity.Subscription
 hint
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-23 15:20:17
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-23 21:48:55
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-23 21:58:42
