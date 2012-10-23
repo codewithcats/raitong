@@ -2,3 +2,11 @@
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-04 19:48:16
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-05 21:34:28
 // Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-05 22:02:36
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-23 15:11:21
+entity mongo --class ~.entity.Subscription --testAutomatically true --identifierType java.lang.String
+interface --class ~.repository.SubscriptionRepository
+repository mongo --interface ~.repository.SubscriptionRepository --entity ~.entity.Subscription
+hint
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-23 15:20:17
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log opened at 2012-10-23 21:48:55
+// Spring Roo 1.2.2.RELEASE [rev 7d75659] log closed at 2012-10-23 21:58:42

@@ -5,7 +5,9 @@ package com.raitongorganicsfarm.app.mb.entity;
 
 import com.raitongorganicsfarm.app.mb.entity.Subscriber;
 import com.raitongorganicsfarm.app.mb.entity.SubscriberGender;
+import com.raitongorganicsfarm.app.mb.entity.Subscription;
 import java.util.Date;
+import java.util.List;
 
 privileged aspect Subscriber_Roo_JavaBean {
     
@@ -87,6 +89,14 @@ privileged aspect Subscriber_Roo_JavaBean {
     
     public void Subscriber.setReferee(String referee) {
         this.referee = referee;
+    }
+    
+    public List<Subscription> Subscriber.getSubscriptions() {
+        return this.subscriptions;
+    }
+    
+    public void Subscriber.setSubscriptions(List<Subscription> subscriptions) {
+        this.subscriptions = subscriptions;
     }
     
 }
