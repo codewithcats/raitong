@@ -18,7 +18,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.raitongorganicsfarm.app.mb.entity.Subscriber;
+import com.raitongorganicsfarm.app.mb.entity.Subscription;
 import com.raitongorganicsfarm.app.mb.repository.SubscriberRepository;
+import com.raitongorganicsfarm.app.mb.repository.SubscriptionRepository;
 import com.raitongorganicsfarm.app.mb.web.util.JsonUtil;
 
 public class SubscriberController_UnitTest {
@@ -33,7 +35,7 @@ public class SubscriberController_UnitTest {
 	@Test
 	public void testSaveSubscriberSuccess() {
 		Subscriber input = new Subscriber();
-		String id = (String.valueOf(new Random().nextLong()));
+		String id = getRandomId();
 		String body = input.toJson();
 
 		JsonUtil jsonUtil = mock(JsonUtil.class);
@@ -64,6 +66,52 @@ public class SubscriberController_UnitTest {
 		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
 	}
 
+	@Test
+	public void testSaveSubscriberWithSubscriptionSuccess() {
+		SubscriberRepository subscriberRepo = mock(SubscriberRepository.class);
+		SubscriptionRepository subscriptionRepo = mock(SubscriptionRepository.class);
+		
+		Subscriber input = generateSubscriber(true, false);
+		
+		String body = input.toJson();
+
+		JsonUtil jsonUtil = mock(JsonUtil.class);
+		when(jsonUtil.fromJson(body, Subscriber.class)).thenReturn(input);
+		Subscriber result = generateSubscriber(true, true);
+		when(subscriberRepo.save(input)).thenReturn(result);
+		when(subscriptionRepo.save(input.getSubscriptions())).thenReturn(result.getSubscriptions());
+		
+		this.controller.setSubscriberRepository(subscriberRepo);
+		this.controller.setSubscriptionRepository(subscriptionRepo);
+		this.controller.setJsonUtil(jsonUtil);
+		
+		ResponseEntity<String> resp = this.controller.create(body);
+		assertEquals(HttpStatus.CREATED, resp.getStatusCode());
+		assertEquals(result.toJson(), resp.getBody());
+	}
+
+	private Subscriber generateSubscriber(boolean haveOneSubscription, boolean setAllId) {
+		Subscriber input = new Subscriber();
+		if(setAllId) {
+			input.setId(getRandomId());
+		}
+		if(haveOneSubscription) {
+			List<Subscription> subscripts = new LinkedList<Subscription>();
+			Subscription subscript = new Subscription();
+			if(setAllId) {
+				subscript.setId(getRandomId());
+			}
+			subscripts.add(subscript);
+			input.setSubscriptions(subscripts);
+			
+		}
+		return input;
+	}
+
+	private String getRandomId() {
+		return String.valueOf(new Random().nextLong());
+	}
+	
 	@Test
 	public void testDeleteSubscriberSuccess() {
 		String customerNo = "999";

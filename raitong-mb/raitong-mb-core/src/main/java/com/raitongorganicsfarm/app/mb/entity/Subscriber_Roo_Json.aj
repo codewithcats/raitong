@@ -12,10 +12,6 @@ import java.util.List;
 
 privileged aspect Subscriber_Roo_Json {
     
-    public String Subscriber.toJson() {
-        return new JSONSerializer().exclude("*.class").serialize(this);
-    }
-    
     public static String Subscriber.toJsonArray(Collection<Subscriber> collection) {
         return new JSONSerializer().exclude("*.class").serialize(collection);
     }
