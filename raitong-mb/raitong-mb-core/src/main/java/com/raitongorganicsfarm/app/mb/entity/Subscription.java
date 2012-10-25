@@ -1,6 +1,5 @@
 package com.raitongorganicsfarm.app.mb.entity;
 
-import flexjson.JSONSerializer;
 import java.util.Date;
 
 import org.springframework.roo.addon.javabean.RooJavaBean;
