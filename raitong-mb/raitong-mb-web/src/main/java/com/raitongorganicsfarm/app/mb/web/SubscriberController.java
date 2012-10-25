@@ -25,7 +25,7 @@ public class SubscriberController {
 	private SubscriptionRepository subscriptionRepository;
 	private JsonUtil<Subscriber> jsonUtil = new JsonUtilImpl<Subscriber>();
 
-	@RequestMapping(method = RequestMethod.POST, value = "/subscribers/**")
+	@RequestMapping(method = RequestMethod.POST, value = "/subscribers/")
 	public ResponseEntity<String> create(@RequestBody String body) {
 		try {
 			Subscriber subscriber = jsonUtil.fromJson(body, Subscriber.class);
@@ -81,6 +81,23 @@ public class SubscriberController {
 				return res;
 			}
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+		} catch(RuntimeException r) {
+			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/subscribers/{customerNo}")
+	public ResponseEntity<String> edit(@RequestBody String body) {
+		try {
+			Subscriber subscriber = jsonUtil.fromJson(body, Subscriber.class);
+			List<Subscription> subscriptions = subscriber.getSubscriptions();
+			if(subscriptions != null && !subscriptions.isEmpty()) {
+				subscriptions = (List<Subscription>) this.subscriptionRepository.save(subscriptions);
+				subscriber.setSubscriptions(subscriptions);
+			}
+			subscriber = this.subscriberRepository.save(subscriber);
+			String s = subscriber.toJson();
+			return new ResponseEntity<String>(s, HttpStatus.OK);
 		} catch(RuntimeException r) {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}

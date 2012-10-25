@@ -8,14 +8,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import javax.management.RuntimeErrorException;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.raitongorganicsfarm.app.mb.entity.Subscriber;
 import com.raitongorganicsfarm.app.mb.entity.Subscription;
@@ -34,8 +31,8 @@ public class SubscriberController_UnitTest {
 
 	@Test
 	public void testSaveSubscriberSuccess() {
-		Subscriber input = new Subscriber();
-		String id = getRandomId();
+		Subscriber input = generateSubscriber(false, true);
+		String id = input.getId();
 		String body = input.toJson();
 
 		JsonUtil jsonUtil = mock(JsonUtil.class);
@@ -231,6 +228,86 @@ public class SubscriberController_UnitTest {
 		this.controller.setSubscriberRepository(repo);
 		ResponseEntity<String> resp = this.controller.info(any);
 		
+		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, resp.getStatusCode());
+	}
+
+	@Test
+	public void testEditSubscriberWithSubscription() {
+		Subscriber subscriber = generateSubscriber(true, false);
+		Subscriber result = generateSubscriber(true, true);
+		
+		JsonUtil<Subscriber> jsonUtil = mock(JsonUtil.class);
+		when(jsonUtil.fromJson(subscriber.toJson(), Subscriber.class)).thenReturn(subscriber);
+		this.controller.setJsonUtil(jsonUtil);
+		
+		SubscriberRepository repo = mock(SubscriberRepository.class);
+		when(repo.save(subscriber)).thenReturn(result);
+		this.controller.setSubscriberRepository(repo);
+		
+		SubscriptionRepository subscriptionRepo = mock(SubscriptionRepository.class);
+		when(subscriptionRepo.save(subscriber.getSubscriptions())).thenReturn(result.getSubscriptions());
+		this.controller.setSubscriptionRepository(subscriptionRepo);
+		
+		String inputBody = subscriber.toJson();
+		ResponseEntity<String> resp = this.controller.edit(inputBody);
+		assertEquals(HttpStatus.OK, resp.getStatusCode());
+		assertEquals(result.toJson(), resp.getBody());
+	}
+	
+	@Test
+	public void testEditSubscriberWithoutSubscription() {
+		Subscriber subscriber = generateSubscriber(false, false);
+		Subscriber result = generateSubscriber(false, true);
+		
+		JsonUtil<Subscriber> jsonUtil = mock(JsonUtil.class);
+		when(jsonUtil.fromJson(subscriber.toJson(), Subscriber.class)).thenReturn(subscriber);
+		this.controller.setJsonUtil(jsonUtil);
+		
+		SubscriberRepository repo = mock(SubscriberRepository.class);
+		when(repo.save(subscriber)).thenReturn(result);
+		this.controller.setSubscriberRepository(repo);
+		
+		SubscriptionRepository subscriptionRepo = mock(SubscriptionRepository.class);
+		when(subscriptionRepo.save(subscriber.getSubscriptions())).thenReturn(result.getSubscriptions());
+		this.controller.setSubscriptionRepository(subscriptionRepo);
+		
+		String inputBody = subscriber.toJson();
+		ResponseEntity<String> resp = this.controller.edit(inputBody);
+		assertEquals(HttpStatus.OK, resp.getStatusCode());
+		assertEquals(result.toJson(), resp.getBody());
+	}
+	
+	@Test
+	public void testEditSubscriberRuntimeErrorAtSubscriber() {
+		Subscriber s = generateSubscriber(false, true);
+		
+		JsonUtil<Subscriber> jsonUtil = mock(JsonUtil.class);
+		String json = s.toJson();
+		when(jsonUtil.fromJson(json, Subscriber.class)).thenReturn(s);
+		this.controller.setJsonUtil(jsonUtil);
+		
+		SubscriberRepository srepo = mock(SubscriberRepository.class);
+		when(srepo.save(s)).thenThrow(new RuntimeException());
+		this.controller.setSubscriberRepository(srepo);
+		
+		ResponseEntity<String> resp = this.controller.edit(json);
+		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, resp.getStatusCode());
+	}
+	
+	@Test
+	public void testEditSubscriberRuntimeErrorAtSubscription() {
+		Subscriber s = generateSubscriber(true, true);
+		
+		JsonUtil<Subscriber> jsonUtil = mock(JsonUtil.class);
+		String json = s.toJson();
+		when(jsonUtil.fromJson(json, Subscriber.class)).thenReturn(s);
+		this.controller.setJsonUtil(jsonUtil);
+		
+		SubscriptionRepository srepo = mock(SubscriptionRepository.class);
+		when(srepo.save(s.getSubscriptions())).thenThrow(new RuntimeException());
+		this.controller.setSubscriptionRepository(srepo);
+		
+		ResponseEntity<String> resp = this.controller.edit(json);
 		assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, resp.getStatusCode());
 	}
 }
