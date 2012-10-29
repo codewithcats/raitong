@@ -14,6 +14,10 @@ body {
 	border-radius: 3px;
 }
 
+.carousel .btn-group .btn.active {
+	display: inline-block;
+}
+
 #create-subscriber-form .carousel .carousel-inner .item {
 	padding-left: 72px;
 	height: 320px;
