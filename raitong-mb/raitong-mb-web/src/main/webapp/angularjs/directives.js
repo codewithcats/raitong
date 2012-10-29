@@ -6,58 +6,54 @@ var d;
 d = angular.module('raitong.mb.directive', []);
 
 d.directive('wizard', function() {
-  var postLink;
-  postLink = function(scope, elements, attrs) {
-    var activeIndex, container, firstActiveItem, items, leftNav, renderCarouselControl, rightNav, wizard;
-    wizard = scope.$eval(attrs.wizard);
-    container = $('.carousel', elements);
-    container.carousel({
-      interval: false
-    });
-    items = $('.item', elements);
-    if (items.length < 1) {
-      throw 'No items at all!';
-    }
-    firstActiveItem = $('.active.item', elements);
-    if (firstActiveItem.length < 1) {
-      throw 'No active item specific!';
-    }
-    activeIndex = items.index(firstActiveItem);
-    renderCarouselControl = function(doValidate) {
-      var valid, validation;
-      leftNav.toggle(activeIndex > 0);
-      if (doValidate) {
-        validation = wizard.validations[activeIndex];
-        valid = validation.validate(validation.subject, scope);
-        rightNav.toggle(valid && activeIndex < items.length - 1);
-        return;
+  return {
+    restrict: 'A',
+    link: function(scope, elements, attrs) {
+      var activeIndex, container, firstActiveItem, items, leftNav, renderCarouselControl, rightNav, v, wizard, _i, _len, _ref;
+      wizard = scope.$eval(attrs.wizard);
+      _ref = wizard.validations;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        v = _ref[_i];
+        scope.$watch(v, function(valid) {
+          return renderCarouselControl(activeIndex, valid);
+        });
       }
-      return rightNav.toggle(items.length - 1);
-    };
-    leftNav = $('a.carousel-control.left', elements);
-    leftNav.click(function() {
-      if (activeItem >= 1) {
-        container.carousel('prev');
-        activeIndex--;
+      container = $('.carousel', elements);
+      container.carousel({
+        interval: false
+      });
+      items = $('.item', elements);
+      if (items.length < 1) {
+        throw 'No items at all!';
       }
-      return renderCarouselControl(false);
-    });
-    rightNav = $('a.carousel-control.right', elements);
-    rightNav.click(function() {
-      var valid, validation;
-      if (activeIndex < items.length) {
-        validation = wizard.validations[activeIndex];
-        valid = validation.validate(validation.subject, scope);
-        if (valid) {
+      firstActiveItem = $('.active.item', elements);
+      if (firstActiveItem.length < 1) {
+        throw 'No active item specific!';
+      }
+      activeIndex = items.index(firstActiveItem);
+      renderCarouselControl = function() {
+        var valid;
+        leftNav.toggle(activeIndex > 0);
+        valid = scope.$eval(wizard.validations[activeIndex]);
+        rightNav.toggle(activeIndex < items.length - 1 && valid);
+      };
+      leftNav = $('a.carousel-control.left', elements);
+      leftNav.click(function() {
+        if (activeIndex >= 1) {
+          container.carousel('prev');
+          activeIndex--;
+          return renderCarouselControl(activeIndex, valid);
+        }
+      });
+      rightNav = $('a.carousel-control.right', elements);
+      rightNav.click(function() {
+        if (activeIndex < items.length) {
           container.carousel('next');
           activeIndex++;
-          renderCarouselControl(true);
-          return;
+          return renderCarouselControl();
         }
-        return renderCarouselControl(false);
-      }
-    });
-    renderCarouselControl(true);
+      });
+      renderCarouselControl();
+    }
   };
-  return postLink;
 });

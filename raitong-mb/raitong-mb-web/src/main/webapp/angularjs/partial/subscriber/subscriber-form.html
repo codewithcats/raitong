@@ -1,13 +1,17 @@
 <div class="container" ng-controller="CreateSubscriberCtrl">
-	<form id="create-subscriber-form" class="span6" wizard>
+	{{$rootScope.createSubscriberForm.$valid}}
+	<form name="createSubscriberForm" novalidate 
+		id="create-subscriber-form" 
+		class="span6"
+		wizard="wizard">
 		<div id="create-subscriber-carousel-wrapper" class="carousel slide" style="height: 320px;" data-interval="false">
 			<div class="carousel-inner">
-				<div class="active item">
+				<div ng-form="basicInfoForm" class="active item">
 					<label>Name</label>
-					<input type="text" ng-model="s.name"/>
+					<input type="text" ng-model="subscriber.name" required/>
 					<label>Customer No</label>
 					<div class="customer-no-wrapper">
-						<input type="text" ng-model="s.customerNo"/>
+						<input type="text" ng-model="subscriber.customerNo"/>
 						<div class="info info-success">
 							<i class="icon-ok">&nbsp;</i>available
 						</div>
@@ -17,30 +21,28 @@
 					</div>
 					<label>Gender</label>
 					<div class="btn-group" data-toggle="buttons-radio">
-						<button class="btn" ng-click="setGender('MALE', s)">Male</button>
-						<button class="btn" ng-click="setGender('FEMALE', s)">Female</button>
-						<button class="btn" ng-click="setGender('NOT_SPECIFIC', s)">Not-Specific</button>
+						<button class="btn" ng-click="setGender('MALE', subscriber)">Male</button><button class="btn" ng-click="setGender('FEMALE', subscriber)">Female</button><button class="btn" ng-click="setGender('NOT_SPECIFIC', subscriber)">Not-Specific</button>
 					</div>
 					<label>Nationality</label>
-					<input type="text" ng-model="s.nationality"/>
+					<input type="text" ng-model="subscriber.nationality"/>
 					<label>Birthday</label>
 					<div>
-						<select ng-model="s.birthday" ng-options="v.value for v in dateOptions"></select>
+						<select ng-model="subscriber.birthday" ng-options="v.value for v in dateOptions"></select>
 					</div>
 				</div>
-				<div class="item">
+				<div ng-form="contactInfoForm" class="item">
 					<label>Address</label>
-					<textarea rows="3" ng-model="s.address"></textarea>
+					<textarea rows="3" ng-model="subscriber.address"></textarea>
 					<label>Phone</label>
-					<input type="text" ng-model="s.phone"/>
+					<input type="text" ng-model="subscriber.phone"/>
 					<label>Email</label>
-					<input type="text" ng-model="s.email"/>
+					<input type="text" ng-model="subscriber.email"/>
 				</div>
-				<div class="item">
+				<div ng-form="otherInfoForm" class="item">
 					<label>Note</label>
-					<input type="text" ng-model="s.note"/>
+					<input type="text" ng-model="subscriber.note"/>
 					<label>Referee</label>
-					<input type="text" ng-model="s.referee"/>
+					<input type="text" ng-model="subscriber.referee"/>
 					<div>
 						<button ng-click="create(s)">Create</button>
 					</div>
