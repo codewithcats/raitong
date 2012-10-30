@@ -16,7 +16,7 @@ ListSubscriberCtrl = ($http, $scope)->
   return
 ListSubscriberCtrl.$inject = ['$http', '$scope']
 
-CreateSubscriberCtrl = ($scope, $http, $rootScope)->
+CreateSubscriberCtrl = ($scope, $http, $location)->
   $scope.wizard =
     validations: [
       'basicInfoForm.$valid'
@@ -46,5 +46,7 @@ CreateSubscriberCtrl = ($scope, $http, $rootScope)->
     subscriber.gender = gender
   $scope.create = (s)->
     req = $http.post 'subscribers', s
-    req.success (subscriber) -> console.log subscriber
-CreateSubscriberCtrl.$inject = ['$scope', '$http', '$rootScope']
+    req.success (subscriber) ->
+      $location.path '/subscribers'
+      return
+CreateSubscriberCtrl.$inject = ['$scope', '$http', '$location']

@@ -4,5 +4,5 @@ angular.module('raitong.mb', ['raitong.mb.directive'])
 		$routeProvider
 			.when('/subscribers', {templateUrl: 'resources/angularjs/partial/subscriber/subscriber-list.html'})
 			.when('/subscribers/create', {templateUrl: 'resources/angularjs/partial/subscriber/subscriber-form.html'})
-			.otherwise({redirectTo: '/subscribers/create'});
+			.otherwise({redirectTo: '/subscribers'});
 	}]);

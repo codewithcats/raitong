@@ -1,27 +1,14 @@
 <div class="container" ng-controller="ListSubscriberCtrl">
-	<h1 class="page-header"><i class="icon-group">&#160;</i>Subscribers &#160;</h1>
-	<div class="span12" style="margin:-12px 0 12px 0;">
-		<a href=""><i class="icon-plus">&#160;</i>New Subscriber</a>
+	<h3><i class="icon-group">&nbsp;</i>Subscribers <small>({{subscribers.length}})</small></h3>
+	<ul class="nav nav-pills">
+	  <li>
+	    <a href="#/subscribers/create"><i class="icon-plus">&nbsp;</i>New Subscriber</a>
+	  </li>
+	</ul>
+	<div class="subscribers-list">
+		<div ng-repeat="s in subscribers" class="row">
+			<span class="span3"><strong>{{s.customerNo}}</strong>&nbsp;{{s.name}}</span>
+			<span class="span3">{{s.address}}</span>
+		</div>
 	</div>
-	<table class="table">
-		<thead>
-			<tr>
-				<th style="width:120px;">Customer No.</th>
-				<th>Name</th>
-				<th style="width:42px;"></th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr ng-repeat="s in subscribers">
-				<td>{{s.customerNo}}</td>
-				<td>{{s.name}}</td>
-				<td>
-					<div class="list-actions">
-						<a href="#" rel="tooltip" title="Detail"><i class="icon-user">&#160;</i></a>&#160;
-						<a ng-click="del(s)" class="del-subscriber-link" rel="tooltip" title="Delete"><i class="icon-remove">&#160;</i></a>
-					</div>
-				</td>
-			</tr>
-		</tbody>
-	</table>
 </div>

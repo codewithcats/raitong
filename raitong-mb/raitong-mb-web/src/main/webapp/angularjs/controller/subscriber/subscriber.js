@@ -24,7 +24,7 @@ ListSubscriberCtrl = function($http, $scope) {
 
 ListSubscriberCtrl.$inject = ['$http', '$scope'];
 
-CreateSubscriberCtrl = function($scope, $http, $rootScope) {
+CreateSubscriberCtrl = function($scope, $http, $location) {
   $scope.wizard = {
     validations: ['basicInfoForm.$valid', 'contactInfoForm.$valid', 'otherInfoForm.$valid']
   };
@@ -61,9 +61,9 @@ CreateSubscriberCtrl = function($scope, $http, $rootScope) {
     var req;
     req = $http.post('subscribers', s);
     return req.success(function(subscriber) {
-      return console.log(subscriber);
+      $location.path('/subscribers');
     });
   };
 };
 
-CreateSubscriberCtrl.$inject = ['$scope', '$http', '$rootScope'];
+CreateSubscriberCtrl.$inject = ['$scope', '$http', '$location'];
