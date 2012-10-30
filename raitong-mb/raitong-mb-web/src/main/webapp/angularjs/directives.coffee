@@ -17,24 +17,30 @@ d.directive 'wizard', ()->
     if firstActiveItem.length < 1 then throw 'No active item specific!'
     activeIndex = items.index firstActiveItem
 
-    renderCarouselControl = () ->
+    renderCarouselControl = ()->
       leftNav.toggle activeIndex > 0
       valid = scope.$eval wizard.validations[activeIndex]
       rightNav.toggle activeIndex < items.length-1 and valid
       return
-    
-    leftNav = $ 'a.carousel-control.left', elements
-    leftNav.click ()->
-      if activeIndex >= 1
-        container.carousel 'prev'
-        activeIndex--
-        renderCarouselControl activeIndex, valid
-    
-    rightNav = $ 'a.carousel-control.right', elements
-    rightNav.click ()->
+
+    next = ()->
       if activeIndex < items.length
         container.carousel 'next'
         activeIndex++
         renderCarouselControl()
+      return
+
+    previous = ()->
+      if activeIndex >= 1
+        container.carousel 'prev'
+        activeIndex--
+        renderCarouselControl()
+      return
+    
+    leftNav = $ 'a.carousel-control.left', elements
+    leftNav.click previous    
+    rightNav = $ 'a.carousel-control.right', elements
+    rightNav.click next
     renderCarouselControl()
+
     return

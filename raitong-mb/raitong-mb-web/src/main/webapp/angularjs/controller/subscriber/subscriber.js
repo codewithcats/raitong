@@ -28,7 +28,27 @@ CreateSubscriberCtrl = function($scope, $http, $rootScope) {
   $scope.wizard = {
     validations: ['basicInfoForm.$valid', 'contactInfoForm.$valid', 'otherInfoForm.$valid']
   };
-  $scope.subscriber = {};
+  $scope.subscriber = {
+    gender: 'MALE',
+    getReadableGender: function() {
+      if (this.gender === 'MALE') {
+        return 'Male';
+      } else if (this.gender === 'FEMALE') {
+        return 'Female';
+      } else if (this.gender === 'NOT_SPECIFIC') {
+        return 'Not Specific';
+      } else {
+        throw 'Invalid gender';
+      }
+    },
+    isGenderActive: function(gender) {
+      if (this.gender === gender) {
+        return 'active btn-primary';
+      } else {
+        return void 0;
+      }
+    }
+  };
   $scope.dateOptions = [
     {
       'value': 1

@@ -9,7 +9,7 @@ d.directive('wizard', function() {
   return {
     restrict: 'A',
     link: function(scope, elements, attrs) {
-      var activeIndex, container, firstActiveItem, items, leftNav, renderCarouselControl, rightNav, v, wizard, _i, _len, _ref;
+      var activeIndex, container, firstActiveItem, items, leftNav, next, previous, renderCarouselControl, rightNav, v, wizard, _i, _len, _ref;
       wizard = scope.$eval(attrs.wizard);
       _ref = wizard.validations;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -37,22 +37,24 @@ d.directive('wizard', function() {
         valid = scope.$eval(wizard.validations[activeIndex]);
         rightNav.toggle(activeIndex < items.length - 1 && valid);
       };
-      leftNav = $('a.carousel-control.left', elements);
-      leftNav.click(function() {
-        if (activeIndex >= 1) {
-          container.carousel('prev');
-          activeIndex--;
-          return renderCarouselControl(activeIndex, valid);
-        }
-      });
-      rightNav = $('a.carousel-control.right', elements);
-      rightNav.click(function() {
+      next = function() {
         if (activeIndex < items.length) {
           container.carousel('next');
           activeIndex++;
-          return renderCarouselControl();
+          renderCarouselControl();
         }
-      });
+      };
+      previous = function() {
+        if (activeIndex >= 1) {
+          container.carousel('prev');
+          activeIndex--;
+          renderCarouselControl();
+        }
+      };
+      leftNav = $('a.carousel-control.left', elements);
+      leftNav.click(previous);
+      rightNav = $('a.carousel-control.right', elements);
+      rightNav.click(next);
       renderCarouselControl();
     }
   };

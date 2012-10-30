@@ -1,55 +1,90 @@
 <div class="container" ng-controller="CreateSubscriberCtrl">
-	{{$rootScope.createSubscriberForm.$valid}}
-	<form name="createSubscriberForm" novalidate 
-		id="create-subscriber-form" 
-		class="span6"
-		wizard="wizard">
-		<div id="create-subscriber-carousel-wrapper" class="carousel slide" style="height: 320px;" data-interval="false">
-			<div class="carousel-inner">
-				<div ng-form="basicInfoForm" class="active item">
-					<label>Name</label>
-					<input type="text" ng-model="subscriber.name" required/>
-					<label>Customer No</label>
-					<div class="customer-no-wrapper">
-						<input type="text" ng-model="subscriber.customerNo"/>
-						<div class="info info-success">
-							<i class="icon-ok">&nbsp;</i>available
+	<div class="row">
+		<h3 class="span12"><i class="icon-plus">&nbsp;</i>New Subscriber</h3>
+	</div>
+	<div class="row">
+		<form name="createSubscriberForm" novalidate 
+			id="create-subscriber-form" 
+			class="span6 wizard"
+			wizard="wizard">
+			<p class="info"><i class="icon-asterisk required-label">&nbsp;</i>required field</p>
+			<div id="create-subscriber-carousel-wrapper" class="carousel slide" data-interval="false">
+				<div class="carousel-inner">
+					<div ng-form="basicInfoForm" class="active item">
+						<h4>Step 1: Basic Information</h4>
+						<label>Name&nbsp;<i class="icon-asterisk required-label">&nbsp;</i></label>
+						<input type="text" ng-model="subscriber.name" required/>
+						<label>Customer Number&nbsp;<i class="icon-asterisk required-label">&nbsp;</i></label>
+						<div class="customer-no-wrapper">
+							<input type="text" ng-model="subscriber.customerNo" required/>
+							<div class="info info-success" ng-hide="true">
+								<i class="icon-ok">&nbsp;</i>available
+							</div>
+							<div class="info info-error" ng-hide="true">
+								<i class="icon-remove">&nbsp;</i>duplicate
+							</div>
 						</div>
-						<div class="info info-error">
-							<i class="icon-remove">&nbsp;</i>duplicate
+						<label>Sex</label>
+						<div class="btn-group" data-toggle="buttons-radio" style="margin-bottom: 6px;">
+							<button class="btn" ng-class="subscriber.isGenderActive('MALE')" ng-click="setGender('MALE', subscriber)">Male</button><button class="btn" ng-class="subscriber.isGenderActive('FEMALE')" ng-click="setGender('FEMALE', subscriber)">Female</button><button class="btn" ng-class="subscriber.isGenderActive('NOT_SPECIFIC')" ng-click="setGender('NOT_SPECIFIC', subscriber)">Not-Specific</button>
+						</div>
+						<label>Nationality</label>
+						<input class="last-input" type="text" ng-model="subscriber.nationality"/>
+						<label ng-hide="true">Birthday</label>
+						<div ng-hide="true">
+							<select ng-model="subscriber.birthday" ng-options="v.value for v in dateOptions"></select>
 						</div>
 					</div>
-					<label>Gender</label>
-					<div class="btn-group" data-toggle="buttons-radio">
-						<button class="btn" ng-click="setGender('MALE', subscriber)">Male</button><button class="btn" ng-click="setGender('FEMALE', subscriber)">Female</button><button class="btn" ng-click="setGender('NOT_SPECIFIC', subscriber)">Not-Specific</button>
+					<div ng-form="contactInfoForm" class="item">
+						<h4>Step 2: Contact Information</h4>
+						<label>Address&nbsp;<i class="icon-asterisk required-label">&nbsp;</i></label>
+						<textarea rows="3" ng-model="subscriber.address" required></textarea>
+						<label>Phone&nbsp;<i class="icon-asterisk required-label">&nbsp;</i></label>
+						<input type="text" ng-model="subscriber.phone" required/>
+						<label>Email</label>
+						<input class="last-input" type="text" ng-model="subscriber.email"/>
 					</div>
-					<label>Nationality</label>
-					<input type="text" ng-model="subscriber.nationality"/>
-					<label>Birthday</label>
-					<div>
-						<select ng-model="subscriber.birthday" ng-options="v.value for v in dateOptions"></select>
-					</div>
-				</div>
-				<div ng-form="contactInfoForm" class="item">
-					<label>Address</label>
-					<textarea rows="3" ng-model="subscriber.address"></textarea>
-					<label>Phone</label>
-					<input type="text" ng-model="subscriber.phone"/>
-					<label>Email</label>
-					<input type="text" ng-model="subscriber.email"/>
-				</div>
-				<div ng-form="otherInfoForm" class="item">
-					<label>Note</label>
-					<input type="text" ng-model="subscriber.note"/>
-					<label>Referee</label>
-					<input type="text" ng-model="subscriber.referee"/>
-					<div>
-						<button ng-click="create(s)">Create</button>
+					<div ng-form="otherInfoForm" class="item">
+						<h4>Step 3: Additional Information</h4>
+						<label>Note</label>
+						<textarea row="3" ng-model="subscriber.note"></textarea>
+						<label>Referee</label>
+						<input type="text" ng-model="subscriber.referee"/>
+						<div class="form-actions">
+							<button class="btn btn-primary" ng-click="create(subscriber)">
+								<i class="icon-ok">&nbsp;</i>Create
+							</button>
+						</div>
 					</div>
 				</div>
+				<a class="carousel-control left" href="" data-slide="prev">&lsaquo;</a>
+	  		<a class="carousel-control right" href="" data-slide="next">&rsaquo;</a>
 			</div>
-			<a class="carousel-control left" href="" data-slide="prev">&lsaquo;</a>
-  			<a class="carousel-control right" href="" data-slide="next">&rsaquo;</a>
+		</form>
+		<div class="span5 well">
+			<h4><i class="icon-user">&nbsp;</i>Overall</h4>
+			<h5>Basic Information</h5>
+			<ul>
+				<li><strong>Name</strong>: {{subscriber.name}}</li>
+				<li><strong>Customer Number</strong>: {{subscriber.customerNo}}</li>
+				<li><strong>Sex</strong>: {{subscriber.getReadableGender()}}</li>
+				<li><strong>Nationality</strong>: {{subscriber.nationality}}</li>
+			</ul>
+			<h5>Contact Information</h5>
+			<ul>
+				<li>
+					<strong>Address</strong>: {{subscriber.address}}
+				</li>
+				<li><strong>Phone</strong>: {{subscriber.phone}}</li>
+				<li><strong>Email</strong>: {{subscriber.email}}</li>
+			</ul>
+			<h5>Additional Information</h5>
+			<ul>
+				<li>
+					<strong>Note</strong>: {{subscriber.note}}
+				</li>
+				<li><strong>Referee</strong>: {{subscriber.referee}}</li>
+			</ul>
 		</div>
-	</form>
+	</div>
 </div>

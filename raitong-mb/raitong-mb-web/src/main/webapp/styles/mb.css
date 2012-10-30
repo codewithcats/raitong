@@ -14,13 +14,25 @@ body {
 	border-radius: 3px;
 }
 
+.wizard .info {
+	padding-left: 72px;
+}
+
 .carousel .btn-group .btn.active {
 	display: inline-block;
 }
 
+form i.required-label {
+	color: #BD362F;
+}
+
+#create-subscriber-form .carousel .carousel-inner {
+	height: 370px;
+}
+
 #create-subscriber-form .carousel .carousel-inner .item {
 	padding-left: 72px;
-	height: 320px;
+	padding-right: 72px;
 }
 
 .customer-no-wrapper {
