@@ -6,7 +6,12 @@
 	  </li>
 	</ul>
 	<div class="subscribers-list">
-		<div ng-repeat="s in subscribers" class="row">
+		<div ng-repeat="s in subscribers" class="row subscriber">
+			<div class="span" style="width: 24px;">
+				<a ng-click="del(s)">
+					<i class="icon-trash">&nbsp;</i>
+				</a>
+			</div>
 			<span class="span3"><strong>{{s.customerNo}}</strong>&nbsp;{{s.name}}</span>
 			<span class="span3">{{s.address}}</span>
 		</div>
