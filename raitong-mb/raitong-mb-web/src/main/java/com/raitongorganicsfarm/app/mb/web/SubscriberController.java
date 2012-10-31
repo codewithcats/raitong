@@ -1,5 +1,6 @@
 package com.raitongorganicsfarm.app.mb.web;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class SubscriberController {
 	public ResponseEntity<String> create(@RequestBody String body) {
 		try {
 			Subscriber subscriber = jsonUtil.fromJson(body, Subscriber.class);
+			subscriber.setCreatedDate(new Date());
 			subscriber = this.subscriberRepository.save(subscriber);
 			String j = subscriber.toJson();
 			return new ResponseEntity<String>(j, HttpStatus.CREATED);

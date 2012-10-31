@@ -99,4 +99,12 @@ privileged aspect Subscriber_Roo_JavaBean {
         this.subscriptions = subscriptions;
     }
     
+    public Date Subscriber.getCreatedDate() {
+        return this.createdDate;
+    }
+    
+    public void Subscriber.setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+    
 }

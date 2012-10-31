@@ -28,4 +28,10 @@ public class SubscriberRepositoryImpl implements SubscriberRepositoryCustom {
 		return mongoTemplate.find(query, Subscriber.class);
 	}
 
+	@Override
+	public String nextCustomerNumber() {
+		long counter = mongoTemplate.count(null, Subscriber.class);
+		return null;
+	}
+
 }

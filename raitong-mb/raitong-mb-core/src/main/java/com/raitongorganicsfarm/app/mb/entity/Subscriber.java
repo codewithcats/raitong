@@ -27,6 +27,7 @@ public class Subscriber {
 	private Date birthday;
 	private String referee;
 	private List<Subscription> subscriptions;
+	private Date createdDate;
 
 	public static Subscriber fromJsonToSubscriber(String json) {
 		return new JSONDeserializer<Subscriber>()

@@ -35,6 +35,7 @@ privileged aspect SubscriberDataOnDemand_Roo_DataOnDemand {
         Subscriber obj = new Subscriber();
         setAddress(obj, index);
         setBirthday(obj, index);
+        setCreatedDate(obj, index);
         setCustomerNo(obj, index);
         setEmail(obj, index);
         setGender(obj, index);
@@ -54,6 +55,11 @@ privileged aspect SubscriberDataOnDemand_Roo_DataOnDemand {
     public void SubscriberDataOnDemand.setBirthday(Subscriber obj, int index) {
         Date birthday = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setBirthday(birthday);
+    }
+    
+    public void SubscriberDataOnDemand.setCreatedDate(Subscriber obj, int index) {
+        Date createdDate = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
+        obj.setCreatedDate(createdDate);
     }
     
     public void SubscriberDataOnDemand.setCustomerNo(Subscriber obj, int index) {

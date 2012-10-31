@@ -52,3 +52,8 @@ form i.required-label {
 	font-weight: bold;
 	color: #B94A48;
 }
+
+.subscribers-list .subscriber {
+	padding: 12px;
+	border-bottom: 1px solid #ccc;
+}
