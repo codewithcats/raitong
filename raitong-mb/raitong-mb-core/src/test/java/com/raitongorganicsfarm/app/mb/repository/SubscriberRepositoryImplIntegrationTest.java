@@ -2,6 +2,7 @@ package com.raitongorganicsfarm.app.mb.repository;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
 import java.util.Random;
 
 import org.junit.Test;
@@ -23,6 +24,7 @@ public class SubscriberRepositoryImplIntegrationTest {
 
 	@Test
 	public void testRemoveByCustomerNo() {
+		subscriberRepository.deleteAll();
 		Subscriber s = dod.getNewTransientSubscriber(new Random().nextInt());
 		subscriberRepository.save(s);
 		Subscriber result = subscriberRepository.findByCustomerNo(s
@@ -32,4 +34,18 @@ public class SubscriberRepositoryImplIntegrationTest {
 		result = subscriberRepository.findByCustomerNo(s.getCustomerNo());
 		assertNull(result);
 	}
+	
+	@Test
+	public void testFindAllOrderByCustomerNo() {
+		subscriberRepository.deleteAll();
+		for(int i = 0; i < 10; i++)
+			subscriberRepository.save(dod.getRandomSubscriber());
+		List<Subscriber> list = subscriberRepository.findAllOrderByCustomerNo();
+		for(int i = 0; i < list.size()-1; i++) {
+			Subscriber x = list.get(i);
+			Subscriber y = list.get(i+1);
+			assertTrue(x.getCustomerNo().compareToIgnoreCase(y.getCustomerNo()) < 0);
+		}
+	}
+	
 }

@@ -37,7 +37,7 @@ public class SubscriberController {
 	@RequestMapping(method = RequestMethod.GET, value = "/subscribers")
 	public ResponseEntity<String> list() {
 		try {
-			List<Subscriber> subscribers = this.subscriberRepository.findAll();
+			List<Subscriber> subscribers = this.subscriberRepository.findAllOrderByCustomerNo();
 			String s = Subscriber.toJsonArray(subscribers);
 			ResponseEntity<String> response = new ResponseEntity<String>(s, HttpStatus.OK);
 			return response;

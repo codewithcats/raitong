@@ -111,7 +111,7 @@ public class SubscriberController_UnitTest {
 		s.setAddress("A1");
 		s.setCustomerNo("CN1");
 		mockSubscribers.add(s);
-		when(repo.findAll()).thenReturn(mockSubscribers);
+		when(repo.findAllOrderByCustomerNo()).thenReturn(mockSubscribers);
 
 		String jsonArray = Subscriber.toJsonArray(mockSubscribers);
 
@@ -125,7 +125,7 @@ public class SubscriberController_UnitTest {
 	@Test
 	public void testListSubscriberRuntimeError() {
 		SubscriberRepository repo = mock(SubscriberRepository.class);
-		when(repo.findAll()).thenThrow(new RuntimeException());
+		when(repo.findAllOrderByCustomerNo()).thenThrow(new RuntimeException());
 		
 		this.controller.setSubscriberRepository(repo);
 		ResponseEntity<String> resp = this.controller.list();
