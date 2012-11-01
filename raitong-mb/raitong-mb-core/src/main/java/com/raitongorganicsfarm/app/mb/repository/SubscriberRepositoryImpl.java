@@ -12,7 +12,6 @@ import com.raitongorganicsfarm.app.mb.entity.Subscriber;
 
 public class SubscriberRepositoryImpl implements SubscriberRepositoryCustom {
 
-	@Autowired
 	private MongoTemplate mongoTemplate;
 
 	@Override
@@ -30,8 +29,20 @@ public class SubscriberRepositoryImpl implements SubscriberRepositoryCustom {
 
 	@Override
 	public String nextCustomerNumber() {
-		long counter = mongoTemplate.count(null, Subscriber.class);
-		return null;
+		Query query = SubscriberQueryHelper.lastestSubscriberQuery();
+		Subscriber subscriber = mongoTemplate.findOne(query, Subscriber.class);
+		long counter = 1;
+		if(subscriber != null) {
+			String c = subscriber.getCustomerNo();
+			counter = Long.parseLong(c.substring(3)) + 1l;
+		}
+		String customerNo = String.format("CSA%1$04d", counter);
+		return customerNo;
+	}
+
+	@Autowired
+	public void setMongoTemplate(MongoTemplate mongoTemplate) {
+		this.mongoTemplate = mongoTemplate;
 	}
 
 }
