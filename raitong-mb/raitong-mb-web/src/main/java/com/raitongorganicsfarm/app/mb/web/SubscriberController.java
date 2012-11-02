@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.raitongorganicsfarm.app.mb.entity.Subscriber;
+import com.raitongorganicsfarm.app.mb.entity.Subscription;
 import com.raitongorganicsfarm.app.mb.repository.SubscriberRepository;
+import com.raitongorganicsfarm.app.mb.repository.SubscriptionRepository;
 import com.raitongorganicsfarm.app.mb.web.util.JsonUtil;
 import com.raitongorganicsfarm.app.mb.web.util.JsonUtilImpl;
 
@@ -21,13 +23,19 @@ import com.raitongorganicsfarm.app.mb.web.util.JsonUtilImpl;
 public class SubscriberController {
 
 	private SubscriberRepository subscriberRepository;
+	private SubscriptionRepository subscriptionRepository;
 	private JsonUtil<Subscriber> jsonUtil = new JsonUtilImpl<Subscriber>();
 
-	@RequestMapping(method = RequestMethod.POST, value = "/subscribers/**")
+	@RequestMapping(method = RequestMethod.POST, value = "/subscribers/")
 	public ResponseEntity<String> create(@RequestBody String body) {
 		try {
 			Subscriber subscriber = jsonUtil.fromJson(body, Subscriber.class);
 			subscriber.setCreatedDate(new Date());
+			List<Subscription> subscriptions = subscriber.getSubscriptions();
+			if(subscriptions != null && !subscriptions.isEmpty()) {
+				subscriptions = (List<Subscription>) subscriptionRepository.save(subscriptions);
+				subscriber.setSubscriptions(subscriptions);
+			}
 			subscriber = this.subscriberRepository.save(subscriber);
 			String j = subscriber.toJson();
 			return new ResponseEntity<String>(j, HttpStatus.CREATED);
@@ -79,12 +87,34 @@ public class SubscriberController {
 			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/subscribers/{customerNo}")
+	public ResponseEntity<String> edit(@RequestBody String body) {
+		try {
+			Subscriber subscriber = jsonUtil.fromJson(body, Subscriber.class);
+			List<Subscription> subscriptions = subscriber.getSubscriptions();
+			if(subscriptions != null && !subscriptions.isEmpty()) {
+				subscriptions = (List<Subscription>) this.subscriptionRepository.save(subscriptions);
+				subscriber.setSubscriptions(subscriptions);
+			}
+			subscriber = this.subscriberRepository.save(subscriber);
+			String s = subscriber.toJson();
+			return new ResponseEntity<String>(s, HttpStatus.OK);
+		} catch(RuntimeException r) {
+			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 
 	@Autowired
 	public void setSubscriberRepository(SubscriberRepository subscriberRepository) {
 		this.subscriberRepository = subscriberRepository;
 	}
 
+	@Autowired
+	public void setSubscriptionRepository(SubscriptionRepository subscriptionRepository) {
+		this.subscriptionRepository = subscriptionRepository;
+	}
+	
 	public void setJsonUtil(JsonUtil<Subscriber> jsonUtil) {
 		this.jsonUtil = jsonUtil;
 	}
