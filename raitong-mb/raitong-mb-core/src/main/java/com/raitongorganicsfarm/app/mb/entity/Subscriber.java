@@ -3,6 +3,8 @@ package com.raitongorganicsfarm.app.mb.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.roo.addon.javabean.RooJavaBean;
 import org.springframework.roo.addon.json.RooJson;
@@ -18,13 +20,17 @@ import flexjson.transformer.DateTransformer;
 @RooJson
 @RooMongoEntity(identifierType = String.class)
 public class Subscriber {
+	@NotNull
 	private String customerNo;
+	@NotNull
 	private String name;
 	private SubscriberGender gender;
 	private String nationality;
+	@NotNull
+	private String address;
+	@NotNull
 	private String phone;
 	private String email;
-	private String address;
 	private String note;
 	private Date birthday;
 	private String referee;

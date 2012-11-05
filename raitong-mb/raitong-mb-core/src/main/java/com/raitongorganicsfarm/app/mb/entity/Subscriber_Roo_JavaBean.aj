@@ -43,6 +43,14 @@ privileged aspect Subscriber_Roo_JavaBean {
         this.nationality = nationality;
     }
     
+    public String Subscriber.getAddress() {
+        return this.address;
+    }
+    
+    public void Subscriber.setAddress(String address) {
+        this.address = address;
+    }
+    
     public String Subscriber.getPhone() {
         return this.phone;
     }
@@ -57,14 +65,6 @@ privileged aspect Subscriber_Roo_JavaBean {
     
     public void Subscriber.setEmail(String email) {
         this.email = email;
-    }
-    
-    public String Subscriber.getAddress() {
-        return this.address;
-    }
-    
-    public void Subscriber.setAddress(String address) {
-        this.address = address;
     }
     
     public String Subscriber.getNote() {

@@ -62,11 +62,6 @@ privileged aspect SubscriberDataOnDemand_Roo_DataOnDemand {
         obj.setCreatedDate(createdDate);
     }
     
-    public void SubscriberDataOnDemand.setCustomerNo(Subscriber obj, int index) {
-        String customerNo = "customerNo_" + index;
-        obj.setCustomerNo(customerNo);
-    }
-    
     public void SubscriberDataOnDemand.setEmail(Subscriber obj, int index) {
         String email = "foo" + index + "@bar.com";
         obj.setEmail(email);

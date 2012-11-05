@@ -45,4 +45,12 @@ public class SubscriberRepositoryImpl implements SubscriberRepositoryCustom {
 		this.mongoTemplate = mongoTemplate;
 	}
 
+	@Override
+	public synchronized Subscriber generateCustomerNoAndSave(Subscriber subscriber) {
+		String customerNo =  nextCustomerNumber();
+		subscriber.setCustomerNo(customerNo);
+		mongoTemplate.save(subscriber);
+		return subscriber;
+	}
+
 }

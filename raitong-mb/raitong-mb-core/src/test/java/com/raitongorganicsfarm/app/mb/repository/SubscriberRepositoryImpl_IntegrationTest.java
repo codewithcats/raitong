@@ -16,7 +16,7 @@ import com.raitongorganicsfarm.app.mb.entity.SubscriberDataOnDemand;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:/META-INF/spring/applicationContext*.xml")
-public class SubscriberRepositoryImplIntegrationTest {
+public class SubscriberRepositoryImpl_IntegrationTest {
 	@Autowired
 	private SubscriberDataOnDemand dod;
 	@Autowired
@@ -46,6 +46,15 @@ public class SubscriberRepositoryImplIntegrationTest {
 			Subscriber y = list.get(i+1);
 			assertTrue(x.getCustomerNo().compareToIgnoreCase(y.getCustomerNo()) < 0);
 		}
+	}
+	
+	@Test
+	public void testCreateAndGetNewCustomerNo() {
+		subscriberRepository.deleteAll();
+		Subscriber s1 = dod.getRandomSubscriber();
+		String customerNo = subscriberRepository.nextCustomerNumber();
+		Subscriber s2 = subscriberRepository.generateCustomerNoAndSave(s1);
+		assertEquals(customerNo, s2.getCustomerNo());
 	}
 	
 }

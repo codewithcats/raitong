@@ -6,6 +6,10 @@ import com.raitongorganicsfarm.app.mb.entity.Subscriber;
 
 public interface SubscriberRepositoryCustom {
 	void removeByCustomerNo(String customerNo);
+
 	List<Subscriber> findAllOrderByCustomerNo();
+
 	String nextCustomerNumber();
+	
+	Subscriber generateCustomerNoAndSave(Subscriber subscriber);
 }
