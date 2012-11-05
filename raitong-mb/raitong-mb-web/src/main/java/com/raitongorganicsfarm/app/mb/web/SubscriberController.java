@@ -26,7 +26,7 @@ public class SubscriberController {
 	private SubscriptionRepository subscriptionRepository;
 	private JsonUtil<Subscriber> jsonUtil = new JsonUtilImpl<Subscriber>();
 
-	@RequestMapping(method = RequestMethod.POST, value = "/subscribers/")
+	@RequestMapping(method = RequestMethod.POST, value = "/subscribers")
 	public ResponseEntity<String> create(@RequestBody String body) {
 		try {
 			Subscriber subscriber = jsonUtil.fromJson(body, Subscriber.class);
@@ -36,7 +36,7 @@ public class SubscriberController {
 				subscriptions = (List<Subscription>) subscriptionRepository.save(subscriptions);
 				subscriber.setSubscriptions(subscriptions);
 			}
-			subscriber = this.subscriberRepository.save(subscriber);
+			subscriber = this.subscriberRepository.generateCustomerNoAndSave(subscriber);
 			String j = subscriber.toJson();
 			return new ResponseEntity<String>(j, HttpStatus.CREATED);
 		} catch (RuntimeException r) {

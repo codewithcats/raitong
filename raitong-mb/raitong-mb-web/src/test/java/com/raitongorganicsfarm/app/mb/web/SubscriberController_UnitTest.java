@@ -41,7 +41,7 @@ public class SubscriberController_UnitTest {
 		Subscriber result = new Subscriber();
 		result.setId(id);
 		SubscriberRepository repository = mock(SubscriberRepository.class);
-		when(repository.save(input)).thenReturn(result);
+		when(repository.generateCustomerNoAndSave(input)).thenReturn(result);
 
 		this.controller.setSubscriberRepository(repository);
 		this.controller.setJsonUtil(jsonUtil);
@@ -55,7 +55,7 @@ public class SubscriberController_UnitTest {
 	public void testSaveSubscriberRuntimeError() {
 		Subscriber subscriber = new Subscriber();
 		SubscriberRepository repository = mock(SubscriberRepository.class);
-		when(repository.save(subscriber)).thenThrow(new RuntimeException());
+		when(repository.generateCustomerNoAndSave(subscriber)).thenThrow(new RuntimeException());
 
 		this.controller.setSubscriberRepository(repository);
 		ResponseEntity<String> response = this.controller.create(subscriber.toJson());
@@ -75,7 +75,7 @@ public class SubscriberController_UnitTest {
 		JsonUtil jsonUtil = mock(JsonUtil.class);
 		when(jsonUtil.fromJson(body, Subscriber.class)).thenReturn(input);
 		Subscriber result = generateSubscriber(true, true);
-		when(subscriberRepo.save(input)).thenReturn(result);
+		when(subscriberRepo.generateCustomerNoAndSave(input)).thenReturn(result);
 		when(subscriptionRepo.save(input.getSubscriptions())).thenReturn(result.getSubscriptions());
 		
 		this.controller.setSubscriberRepository(subscriberRepo);

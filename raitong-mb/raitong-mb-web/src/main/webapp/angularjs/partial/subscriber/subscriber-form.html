@@ -14,16 +14,6 @@
 					<h4>1. Basic Information</h4>
 					<label>Name&nbsp;<i class="icon-asterisk required-label">&nbsp;</i></label>
 					<input type="text" ng-model="subscriber.name" required/>
-					<label>Customer Number&nbsp;<i class="icon-asterisk required-label">&nbsp;</i></label>
-					<div class="customer-no-wrapper">
-						<input type="text" ng-model="subscriber.customerNo" required/>
-						<div class="info info-success" ng-hide="true">
-							<i class="icon-ok">&nbsp;</i>available
-						</div>
-						<div class="info info-error" ng-hide="true">
-							<i class="icon-remove">&nbsp;</i>duplicate
-						</div>
-					</div>
 					<label>Sex</label>
 					<div class="btn-group" data-toggle="buttons-radio" style="margin-bottom: 6px;">
 						<button class="btn" ng-class="subscriber.isGenderActive('MALE')" ng-click="setGender('MALE', subscriber)">Male</button><button class="btn" ng-class="subscriber.isGenderActive('FEMALE')" ng-click="setGender('FEMALE', subscriber)">Female</button><button class="btn" ng-class="subscriber.isGenderActive('NOT_SPECIFIC')" ng-click="setGender('NOT_SPECIFIC', subscriber)">Not-Specific</button>
