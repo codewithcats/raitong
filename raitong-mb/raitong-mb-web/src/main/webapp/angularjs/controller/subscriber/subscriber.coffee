@@ -50,3 +50,10 @@ CreateSubscriberCtrl = ($scope, $http, $location)->
       $location.path '/subscribers'
       return
 CreateSubscriberCtrl.$inject = ['$scope', '$http', '$location']
+
+SubscriberInfoCtrl = ($scope, $http, $routeParams, SubscriberService)->
+  subscriber = SubscriberService.get $routeParams, ()->
+    $scope.subscriber = subscriber
+    return
+  return
+SubscriberInfoCtrl.$inject = ['$scope', '$http', '$routeParams', 'SubscriberService'] 
