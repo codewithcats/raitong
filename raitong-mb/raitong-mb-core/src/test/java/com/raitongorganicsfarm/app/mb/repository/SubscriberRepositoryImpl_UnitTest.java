@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 import org.junit.Before;
@@ -38,11 +40,12 @@ public class SubscriberRepositoryImpl_UnitTest {
 		Query query = SubscriberQueryHelper.lastestSubscriberQuery();
 		Subscriber s = new Subscriber();
 		
-		int randInt = new Random().nextInt() % 10000;
+		int randInt = Math.abs(new Random().nextInt()) % 10000;
 		String seedCustomerNo = String.format("CSA%1$04d", randInt);
 		
 		s.setCustomerNo(seedCustomerNo);
-		when(mongoTemplate.findOne(query, Subscriber.class)).thenReturn(s);
+		List<Subscriber> list = Collections.singletonList(s);
+		when(mongoTemplate.find(query, Subscriber.class)).thenReturn(list);
 		this.subscriberRepository.setMongoTemplate(mongoTemplate);
 		String c = this.subscriberRepository.nextCustomerNumber();
 		String expectCustomerNo = String.format("CSA%1$04d", randInt + 1);

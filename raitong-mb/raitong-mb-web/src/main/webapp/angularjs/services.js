@@ -12,7 +12,13 @@ s.factory('SubscriberService', function($resource) {
     get: {
       method: 'GET',
       params: {
-        id: '@customerNo'
+        customerNo: '@customerNo'
+      }
+    },
+    update: {
+      method: 'POST',
+      params: {
+        customerNo: '@customerNo'
       }
     }
   };

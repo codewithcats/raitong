@@ -30,9 +30,10 @@ public class SubscriberRepositoryImpl implements SubscriberRepositoryCustom {
 	@Override
 	public String nextCustomerNumber() {
 		Query query = SubscriberQueryHelper.lastestSubscriberQuery();
-		Subscriber subscriber = mongoTemplate.findOne(query, Subscriber.class);
+		List<Subscriber> list = mongoTemplate.find(query, Subscriber.class);
 		long counter = 1;
-		if(subscriber != null) {
+		if(!list.isEmpty()) {
+			Subscriber subscriber = list.get(0);
 			String c = subscriber.getCustomerNo();
 			counter = Long.parseLong(c.substring(3)) + 1l;
 		}
