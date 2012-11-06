@@ -60,5 +60,10 @@ form i.required-label {
 
 .subscriber-info .info {
 	padding-left: 12px;
+	border-left: 3px solid #CCC;
+}
+.subscriber-info .info.info-undefined {
 	border-left: 3px solid #EEE;
+	font-style: italic;
+	color: #CCC;
 }

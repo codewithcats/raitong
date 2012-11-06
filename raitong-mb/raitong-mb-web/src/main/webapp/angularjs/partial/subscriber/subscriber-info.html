@@ -4,35 +4,33 @@
 			<i class="icon-user">&nbsp;</i>Subscriber
 		</h3>
 	</div>
-	<div class="row">
-		<div class="row subscriber-info">
-			<div class="span4">
-				<h4>1. Basic Information</h4>
-				<strong>Customer Number</strong>
-				<p class="info">{{subscriber.customerNo}}</p>
-				<strong>Name</strong>
-				<p class="info">{{subscriber.name}}</p>
-				<strong>Sex</strong>
-				<p class="info">{{subscriber.getReadableGender()}}</p>
-				<strong>Nationality</strong>
-				<p class="info">{{subscriber.nationality}}</p>
-			</div>
-			<div class="span4">
-				<h4>2. Contact Information</h4>
-				<strong>Address</strong>
-				<p class="info">{{subscriber.address}}</p>
-				<strong>Phone</strong>
-				<p class="info">{{subscriber.phone}}</p>
-				<strong>Email</label>
-				<p class="info">{{subscriber.email}}</p>
-			</div>
-			<div class="span4">
-				<h4>3. Additional Information</h4>
-				<strong>Note</strong>
-				<p class="info">{{subscriber.note}}</p>
-				<strong>Referee</strong>
-				<p class="info">{{subscriber.referee}}</p>
-			</div>
+	<div class="row subscriber-info">
+		<div class="span4">
+			<h4>1. Basic Information</h4>
+			<strong>Customer Number</strong>
+			<p class="info" ng-class="getInfoClass(subscriber.customerNo)">{{displayInfo(subscriber.customerNo)}}</p>
+			<strong>Name</strong>
+			<p class="info" ng-class="getInfoClass(subscriber.name)">{{displayInfo(subscriber.name)}}</p>
+			<strong>Sex</strong>
+			<p class="info" ng-class="getInfoClass(subscriber.getReadableGender())">{{displayInfo(subscriber.getReadableGender())}}</p>
+			<strong>Nationality</strong>
+			<p class="info" ng-class="getInfoClass(subscriber.nationality)">{{displayInfo(subscriber.nationality)}}</p>
+		</div>
+		<div class="span4">
+			<h4>2. Contact Information</h4>
+			<strong>Address</strong>
+			<p class="info" ng-class="getInfoClass(subscriber.address)">{{displayInfo(subscriber.address)}}</p>
+			<strong>Phone</strong>
+			<p class="info" ng-class="getInfoClass(subscriber.phone)">{{displayInfo(subscriber.phone)}}</p>
+			<strong>Email</strong>
+			<p class="info" ng-class="getInfoClass(subscriber.email)">{{displayInfo(subscriber.email)}}</p>
+		</div>
+		<div class="span4">
+			<h4>3. Additional Information</h4>
+			<strong>Note</strong>
+			<p class="info" ng-class="getInfoClass(subscriber.note)">{{displayInfo(subscriber.note)}}</p>
+			<strong>Referee</strong>
+			<p class="info" ng-class="getInfoClass(subscriber.referee)">{{displayInfo(subscriber.referee)}}</p>
 		</div>
 	</div>
 </div>

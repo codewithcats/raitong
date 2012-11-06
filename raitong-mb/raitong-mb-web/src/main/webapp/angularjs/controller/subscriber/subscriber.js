@@ -74,6 +74,14 @@ SubscriberInfoCtrl = function($scope, $routeParams, SubscriberService) {
     delete $scope.subscriber;
     $scope.subscriber = new Subscriber(subscriber);
   });
+  $scope.displayInfo = function(info) {
+    return info || 'No Information';
+  };
+  $scope.getInfoClass = function(info) {
+    if (!info) {
+      return 'info-undefined';
+    }
+  };
 };
 
 SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService'];

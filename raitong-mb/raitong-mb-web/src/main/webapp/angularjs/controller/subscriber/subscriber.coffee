@@ -56,5 +56,7 @@ SubscriberInfoCtrl = ($scope, $routeParams, SubscriberService)->
     delete $scope.subscriber
     $scope.subscriber = new Subscriber subscriber
     return
+  $scope.displayInfo = (info)-> info || 'No Information'
+  $scope.getInfoClass = (info)-> 'info-undefined' if !info
   return
 SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService'] 
