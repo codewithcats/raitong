@@ -57,3 +57,8 @@ form i.required-label {
 	padding: 12px;
 	border-bottom: 1px solid #ccc;
 }
+
+.subscriber-info .info {
+	padding-left: 12px;
+	border-left: 3px solid #EEE;
+}
