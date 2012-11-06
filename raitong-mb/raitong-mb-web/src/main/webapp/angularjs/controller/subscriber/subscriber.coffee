@@ -19,8 +19,6 @@ ListSubscriberCtrl.$inject = ['$http', '$scope']
 CreateSubscriberCtrl = ($scope, $http, $location)->
   $scope.mode = 'create'
   $scope.subscriber = new Subscriber
-  $scope.setGender = (gender, subscriber)->
-    subscriber.gender = gender
   $scope.create = (s)->
     req = $http.post 'subscribers', s
     req.success (subscriber) ->
@@ -38,7 +36,7 @@ SubscriberInfoCtrl = ($scope, $routeParams, SubscriberService)->
   return
 SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService'] 
 
-EditSubscriberCtrl = ($scope, $routeParams, SubscriberService)->
+EditSubscriberCtrl = ($scope, $routeParams, $location, SubscriberService)->
   $scope.mode = 'edit'
   subscriber = SubscriberService.get $routeParams, ()->
     delete $scope.subscriber
@@ -49,4 +47,4 @@ EditSubscriberCtrl = ($scope, $routeParams, SubscriberService)->
       $location.path "/subscribers/#{customerNo}"
       return
     return
-EditSubscriberCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService']
+EditSubscriberCtrl.$inject = ['$scope', '$routeParams', '$location', 'SubscriberService']

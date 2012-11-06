@@ -23,5 +23,8 @@ Subscriber = function(subscriber) {
       return void 0;
     }
   };
+  this.setGender = function(gender) {
+    this.gender = gender;
+  };
   $.extend(true, this, subscriber || {});
 };

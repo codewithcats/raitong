@@ -27,9 +27,6 @@ ListSubscriberCtrl.$inject = ['$http', '$scope'];
 CreateSubscriberCtrl = function($scope, $http, $location) {
   $scope.mode = 'create';
   $scope.subscriber = new Subscriber;
-  $scope.setGender = function(gender, subscriber) {
-    return subscriber.gender = gender;
-  };
   return $scope.create = function(s) {
     var req;
     req = $http.post('subscribers', s);

@@ -16,7 +16,7 @@
 					<input type="text" ng-model="subscriber.name" required/>
 					<label>Sex</label>
 					<div class="btn-group" data-toggle="buttons-radio" style="margin-bottom: 6px;">
-						<button class="btn" ng-class="subscriber.isGenderActive('MALE')" ng-click="setGender('MALE', subscriber)">Male</button><button class="btn" ng-class="subscriber.isGenderActive('FEMALE')" ng-click="setGender('FEMALE', subscriber)">Female</button><button class="btn" ng-class="subscriber.isGenderActive('NOT_SPECIFIC')" ng-click="setGender('NOT_SPECIFIC', subscriber)">Not-Specific</button>
+						<button class="btn" ng-class="subscriber.isGenderActive('MALE')" ng-click="subscriber.setGender('MALE')">Male</button><button class="btn" ng-class="subscriber.isGenderActive('FEMALE')" ng-click="subscriber.setGender('FEMALE')">Female</button><button class="btn" ng-class="subscriber.isGenderActive('NOT_SPECIFIC')" ng-click="subscriber.setGender('NOT_SPECIFIC')">Not-Specific</button>
 					</div>
 					<label>Nationality</label>
 					<input class="last-input" type="text" ng-model="subscriber.nationality"/>

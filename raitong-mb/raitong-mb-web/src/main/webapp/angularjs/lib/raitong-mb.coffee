@@ -14,6 +14,9 @@ Subscriber = (subscriber)->
     if this.gender is gender
       return 'active btn-primary'
     else return undefined
+  this.setGender = (gender)->
+    this.gender = gender
+    return
 
   $.extend true, this, subscriber or {}
   return
