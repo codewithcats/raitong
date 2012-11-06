@@ -17,31 +17,8 @@ ListSubscriberCtrl = ($http, $scope)->
 ListSubscriberCtrl.$inject = ['$http', '$scope']
 
 CreateSubscriberCtrl = ($scope, $http, $location)->
-  $scope.wizard =
-    validations: [
-      'basicInfoForm.$valid'
-      'contactInfoForm.$valid'
-      'otherInfoForm.$valid'
-    ]
-  $scope.subscriber = {
-    gender: 'MALE'
-    getReadableGender: ()->
-      if this.gender is 'MALE'
-        return 'Male'
-      else if this.gender is 'FEMALE'
-        return 'Female'
-      else if this.gender is 'NOT_SPECIFIC'
-        return 'Not Specific'
-      else
-        throw 'Invalid gender'
-    isGenderActive: (gender)->
-      if this.gender is gender
-        return 'active btn-primary'
-      else return undefined
-  }
-  $scope.dateOptions = [
-    {'value': 1}
-  ]
+  $scope.mode = 'create'
+  $scope.subscriber = new Subscriber
   $scope.setGender = (gender, subscriber)->
     subscriber.gender = gender
   $scope.create = (s)->
@@ -60,3 +37,16 @@ SubscriberInfoCtrl = ($scope, $routeParams, SubscriberService)->
   $scope.getInfoClass = (info)-> 'info-undefined' if !info
   return
 SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService'] 
+
+EditSubscriberCtrl = ($scope, $routeParams, SubscriberService)->
+  $scope.mode = 'edit'
+  subscriber = SubscriberService.get $routeParams, ()->
+    delete $scope.subscriber
+    $scope.subscriber = new Subscriber subscriber
+  $scope.save = (s)->
+    SubscriberService.update s, ()->
+      customerNo = subscriber.customerNo
+      $location.path "/subscribers/#{customerNo}"
+      return
+    return
+EditSubscriberCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService']

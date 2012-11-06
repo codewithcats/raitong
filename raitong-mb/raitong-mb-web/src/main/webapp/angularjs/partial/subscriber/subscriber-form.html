@@ -42,13 +42,23 @@
 					<input type="text" ng-model="subscriber.referee"/>
 				</div>
 			</div>
-			<div class="form-actions">
-				<button class="btn btn-primary" 
-					ng-click="create(subscriber)"
-					ng-disabled="!createSubscriberForm.$valid">
-					<i class="icon-ok">&nbsp;</i>Create
-				</button>
-				<a href="#/subscribers" class="btn">Cancel</a>
+			<div ng-switch on="mode">
+				<div ng-switch-when="create" class="form-actions">
+					<button class="btn btn-primary" 
+						ng-click="create(subscriber)"
+						ng-disabled="!createSubscriberForm.$valid">
+						<i class="icon-ok">&nbsp;</i>Create
+					</button>
+					<a href="#/subscribers" class="btn">Cancel</a>
+				</div>
+				<div ng-switch-when="edit" class="form-actions">
+					<button class="btn btn-primary" 
+						ng-click="save(subscriber)"
+						ng-disabled="!createSubscriberForm.$valid">
+						<i class="icon-ok">&nbsp;</i>Save
+					</button>
+					<a href="#/subscribers/{{subscriber.customerNo}}" class="btn">Cancel</a>
+				</div>
 			</div>
 		</form>
 	</div>
