@@ -1,0 +1,38 @@
+<div class="container" ng-controller="SubscriberInfoCtrl">
+	<div class="row">
+		<h3 class="span12">
+			<i class="icon-user">&nbsp;</i>Subscriber
+		</h3>
+	</div>
+	<div class="row">
+		<div class="row">
+			<div class="span4">
+				<h4>1. Basic Information</h4>
+				<strong>Customer Number</strong>
+				<p>{{subscriber.customerNo}}</p>
+				<strong>Name</strong>
+				<p>{{subscriber.name}}</p>
+				<strong>Sex</strong>
+				<p>{{subscriber.getReadableGender()}}</p>
+				<strong>Nationality</strong>
+				<p>{{subscriber.nationality}}</p>
+			</div>
+			<div class="span4">
+				<h4>2. Contact Information</h4>
+				<strong>Address</strong>
+				<p>{{subscriber.address}}</p>
+				<strong>Phone</strong>
+				<p>{{subscriber.phone}}</p>
+				<strong>Email</label>
+				<p>{{subscriber.email}}</p>
+			</div>
+			<div class="span4">
+				<h4>3. Additional Information</h4>
+				<strong>Note</strong>
+				<p>{{subscriber.note}}</p>
+				<strong>Referee</strong>
+				<p>{{subscriber.referee}}</p>
+			</div>
+		</div>
+	</div>
+</div>
