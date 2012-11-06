@@ -51,9 +51,10 @@ CreateSubscriberCtrl = ($scope, $http, $location)->
       return
 CreateSubscriberCtrl.$inject = ['$scope', '$http', '$location']
 
-SubscriberInfoCtrl = ($scope, $http, $routeParams, SubscriberService)->
+SubscriberInfoCtrl = ($scope, $routeParams, SubscriberService)->
   subscriber = SubscriberService.get $routeParams, ()->
-    $scope.subscriber = subscriber
+    delete $scope.subscriber
+    $scope.subscriber = new Subscriber subscriber
     return
   return
-SubscriberInfoCtrl.$inject = ['$scope', '$http', '$routeParams', 'SubscriberService'] 
+SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService'] 

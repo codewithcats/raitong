@@ -68,11 +68,12 @@ CreateSubscriberCtrl = function($scope, $http, $location) {
 
 CreateSubscriberCtrl.$inject = ['$scope', '$http', '$location'];
 
-SubscriberInfoCtrl = function($scope, $http, $routeParams, SubscriberService) {
+SubscriberInfoCtrl = function($scope, $routeParams, SubscriberService) {
   var subscriber;
   subscriber = SubscriberService.get($routeParams, function() {
-    $scope.subscriber = subscriber;
+    delete $scope.subscriber;
+    $scope.subscriber = new Subscriber(subscriber);
   });
 };
 
-SubscriberInfoCtrl.$inject = ['$scope', '$http', '$routeParams', 'SubscriberService'];
+SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService'];
