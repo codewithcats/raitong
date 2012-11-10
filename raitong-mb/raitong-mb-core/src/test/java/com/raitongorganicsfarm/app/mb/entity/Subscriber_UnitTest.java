@@ -1,18 +1,22 @@
 package com.raitongorganicsfarm.app.mb.entity;
 
-import java.lang.reflect.Method;
+import static org.junit.Assert.assertEquals;
+
+import java.util.Date;
+import java.util.Random;
 
 import org.junit.Test;
 
 public class Subscriber_UnitTest {
 
 	@Test
-	public void testGetMethod() {
-		Class<Subscriber> cls = Subscriber.class;
-		System.out.println(cls.getSimpleName());
-		Method[] methods = cls.getMethods();
-		for(Method m: methods) {
-			System.out.println(m);
-		}
+	public void testDeserializeDate() {
+		long ms = new Random().nextLong();
+		Date date = new Date(ms);
+		Subscriber subscriber = new Subscriber();
+		subscriber.setCreatedDate(date);
+		String in = subscriber.toJson();
+		Subscriber actual = Subscriber.fromJsonToSubscriber(in);
+		assertEquals(subscriber.getCreatedDate(), actual.getCreatedDate());
 	}
 }

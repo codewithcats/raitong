@@ -40,7 +40,6 @@ public class Subscriber {
 
 	public static Subscriber fromJsonToSubscriber(String json) {
 		return new JSONDeserializer<Subscriber>()
-				.use(Date.class, new DateTransformer("ddMMyyyy"))
 				.use(null, Subscriber.class).deserialize(json);
 	}
 
