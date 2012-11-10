@@ -13,7 +13,6 @@ import org.springframework.roo.addon.tostring.RooToString;
 
 import flexjson.JSONDeserializer;
 import flexjson.JSONSerializer;
-import flexjson.transformer.DateTransformer;
 
 @RooJavaBean
 @RooToString
