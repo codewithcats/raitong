@@ -20,12 +20,20 @@ ListSubscriberCtrl = function($http, $scope) {
       getSubscribers();
     });
   };
+  $scope.getSubscriberBirthdayLabel = function(s) {
+    if (s.birthday) {
+      return moment(s.birthday).format('Do MMMM YYYY');
+    } else {
+      return '';
+    }
+  };
 };
 
 ListSubscriberCtrl.$inject = ['$http', '$scope'];
 
 CreateSubscriberCtrl = function($scope, $http, $location) {
   $scope.mode = 'create';
+  $scope.birthdayToYear = moment().year();
   $scope.subscriber = new Subscriber;
   return $scope.create = function(s) {
     var req;

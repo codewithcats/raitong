@@ -13,11 +13,15 @@ ListSubscriberCtrl = ($http, $scope)->
       getSubscribers()
       return
     return
+
+  $scope.getSubscriberBirthdayLabel = (s)->
+    return if s.birthday then moment(s.birthday).format 'Do MMMM YYYY' else ''
   return
 ListSubscriberCtrl.$inject = ['$http', '$scope']
 
 CreateSubscriberCtrl = ($scope, $http, $location)->
   $scope.mode = 'create'
+  $scope.birthdayToYear = moment().year()
   $scope.subscriber = new Subscriber
   $scope.create = (s)->
     req = $http.post 'subscribers', s

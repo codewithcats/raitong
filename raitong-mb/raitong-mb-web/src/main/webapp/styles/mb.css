@@ -67,3 +67,7 @@ form i.required-label {
 	font-style: italic;
 	color: #CCC;
 }
+
+.datePicker .day {width: 60px;}
+.datePicker .month {width: 110px;}
+.datePicker .year {width: 70px;}
