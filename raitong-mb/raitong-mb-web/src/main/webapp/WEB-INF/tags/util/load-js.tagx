@@ -12,6 +12,7 @@ xmlns:spring="http://www.springframework.org/tags" version="2.0">
   <spring:url value="/resources/angularjs/app.js" var="angular_app_url"/>
   <spring:url value="/resources/angularjs/directives.js" var="angular_directive_url"/>
   <spring:url value="/resources/angularjs/controller/subscriber/subscriber.js" var="angular_controller_subscriber_url"/>
+  <spring:url value="/resources/angularjs/controller/subscription/subscription.js" var="angular_controller_subscription_url"/>
   <spring:url value="/resources/angularjs/services.js" var="angular_service_url"/>
   <spring:url value="/resources/twitter-bootstrap/js/bootstrap.min.js" var="bootstrap_js_url"/>
   
@@ -24,6 +25,7 @@ xmlns:spring="http://www.springframework.org/tags" version="2.0">
   <script src="${angular_service_url}" type="text/javascript"><!-- --></script>
   <script src="${angular_directive_url}" type="text/javascript"><!-- --></script>
   <script src="${angular_controller_subscriber_url}" type="text/javascript"><!-- --></script>
+  <script src="${angular_controller_subscription_url}" type="text/javascript"><!-- --></script>
   <script src="${bootstrap_js_url}" type="text/javascript"><!-- required for FF3 and Opera --></script>
   <script type="text/javascript">
   $(function() {

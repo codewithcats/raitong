@@ -6,5 +6,6 @@ angular.module('raitong.mb', ['raitong.mb.directive', 'raitong.mb.service'])
 			.when('/subscribers/create', {templateUrl: 'resources/angularjs/partial/subscriber/subscriber-form.html', controller: 'CreateSubscriberCtrl'})
 			.when('/subscribers/:customerNo', {templateUrl: 'resources/angularjs/partial/subscriber/subscriber-info.html'})
       .when('/subscribers/:customerNo/edit', {templateUrl: 'resources/angularjs/partial/subscriber/subscriber-form.html', controller: 'EditSubscriberCtrl'})
+      .when('/subscribers/:customerNo/subscription/create', {templateUrl: 'resources/angularjs/partial/subscription/subscription-form.html', controller: 'CreateSubscriptionCtrl'})
       .otherwise({redirectTo: '/subscribers'});
 	}]);
