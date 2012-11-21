@@ -49,7 +49,6 @@ CreateSubscriberCtrl.$inject = ['$scope', '$http', '$location'];
 SubscriberInfoCtrl = function($scope, $routeParams, SubscriberService) {
   var subscriber;
   subscriber = SubscriberService.get($routeParams, function() {
-    delete $scope.subscriber;
     $scope.subscriber = new Subscriber(subscriber);
   });
   $scope.displayInfo = function(info) {
@@ -68,7 +67,6 @@ EditSubscriberCtrl = function($scope, $routeParams, $location, SubscriberService
   var subscriber;
   $scope.mode = 'edit';
   subscriber = SubscriberService.get($routeParams, function() {
-    delete $scope.subscriber;
     return $scope.subscriber = new Subscriber(subscriber);
   });
   return $scope.save = function(s) {

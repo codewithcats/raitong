@@ -32,7 +32,6 @@ CreateSubscriberCtrl.$inject = ['$scope', '$http', '$location']
 
 SubscriberInfoCtrl = ($scope, $routeParams, SubscriberService)->
   subscriber = SubscriberService.get $routeParams, ()->
-    delete $scope.subscriber
     $scope.subscriber = new Subscriber subscriber
     return
   $scope.displayInfo = (info)-> info || 'No Information'
@@ -43,7 +42,6 @@ SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService']
 EditSubscriberCtrl = ($scope, $routeParams, $location, SubscriberService)->
   $scope.mode = 'edit'
   subscriber = SubscriberService.get $routeParams, ()->
-    delete $scope.subscriber
     $scope.subscriber = new Subscriber subscriber
   $scope.save = (s)->
     SubscriberService.update s, ()->

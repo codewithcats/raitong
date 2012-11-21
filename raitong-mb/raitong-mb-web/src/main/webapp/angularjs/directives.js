@@ -65,7 +65,7 @@ d.directive('datePicker', function() {
     restrict: 'A',
     require: ['ngModel'],
     link: function(scope, elements, attrs, ctrls) {
-      var dayPicker, fragment, fromYear, m, monthPicker, ngModelCtrl, option, toYear, updateModel, updatePicker, y, yearPicker, _i, _j, _k, _len, _ref;
+      var dayPicker, fragment, fromYear, getDateArray, m, mills, monthPicker, ngModelCtrl, option, toYear, updateModel, updatePicker, y, yearPicker, _i, _j, _k, _len, _ref;
       dayPicker = $('.day', elements);
       monthPicker = $('.month', elements);
       yearPicker = $('.year', elements);
@@ -128,7 +128,13 @@ d.directive('datePicker', function() {
       }
       monthPicker.append(fragment);
       fromYear = scope.$eval(attrs.fromYear);
+      if (!fromYear) {
+        fromYear = moment().year();
+      }
       toYear = scope.$eval(attrs.toYear);
+      if (!toYear) {
+        toYear = moment().year() - 80;
+      }
       fragment = document.createDocumentFragment();
       for (y = _k = fromYear; fromYear <= toYear ? _k <= toYear : _k >= toYear; y = fromYear <= toYear ? ++_k : --_k) {
         option = $('<option></option>', {
@@ -138,38 +144,65 @@ d.directive('datePicker', function() {
         option.appendTo(fragment);
       }
       yearPicker.append(fragment);
-      updateModel = function() {
-        var _moment;
+      getDateArray = function() {
         m = monthPicker.val();
         y = yearPicker.val();
         d = dayPicker.val();
-        _moment = moment([y, m, d]);
-        return ngModelCtrl.$setViewValue(_moment.valueOf());
+        return [y, m, d];
+      };
+      updateModel = function() {
+        var date, dateArray;
+        dateArray = getDateArray();
+        date = moment([y, m, d]);
+        return ngModelCtrl.$setViewValue(date.valueOf());
+      };
+      updatePicker = function(input) {
+        var date, days, options, toBeHidden;
+        if (angular.isArray(input)) {
+          date = moment([input[0], input[1]]);
+          days = date.daysInMonth();
+          options = dayPicker.children('option');
+          options.css('display', 'inline');
+          toBeHidden = options.slice(days);
+          toBeHidden.css('display', 'none');
+          d = parseInt(input[2]);
+          if (d > days) {
+            d = days;
+          }
+          dayPicker.val(d);
+        } else if (angular.isNumber(input)) {
+          date = moment(input);
+          y = date.year();
+          m = date.month();
+          d = date.date();
+          yearPicker.val(y);
+          monthPicker.val(m);
+          dayPicker.val(d);
+        }
       };
       ngModelCtrl = ctrls[0];
       if (!ngModelCtrl.$modelValue) {
         updateModel();
+      } else {
+        mills = ngModelCtrl.$modelValue;
+        updatePicker(mills);
       }
-      updatePicker = function() {
-        var days, options, toBeHidden, _moment;
-        m = monthPicker.val();
-        y = yearPicker.val();
-        d = dayPicker.val();
-        _moment = moment([y, m]);
-        days = _moment.daysInMonth();
-        options = dayPicker.children('option');
-        options.css('display', 'inline');
-        toBeHidden = options.slice(days);
-        toBeHidden.css('display', 'none');
-        d = parseInt(d);
-        if (d > days) {
-          d = days;
-        }
-        dayPicker.val(d);
-        updateModel();
+      ngModelCtrl.$render = function() {
+        mills = ngModelCtrl.$modelValue;
+        return updatePicker(mills);
       };
-      monthPicker.change(updatePicker);
-      yearPicker.change(updatePicker);
+      monthPicker.change(function() {
+        var dateArray;
+        dateArray = getDateArray();
+        updatePicker(dateArray);
+        return updateModel();
+      });
+      yearPicker.change(function() {
+        var dateArray;
+        dateArray = getDateArray();
+        updatePicker(dateArray);
+        return updateModel();
+      });
       dayPicker.change(updateModel);
     }
   };

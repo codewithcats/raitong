@@ -79,42 +79,67 @@ d.directive 'datePicker', ()->
     monthPicker.append fragment
 
     fromYear = scope.$eval attrs.fromYear
+    if not fromYear then fromYear = moment().year()
     toYear = scope.$eval attrs.toYear
+    if not toYear then toYear = moment().year() - 80
     fragment = document.createDocumentFragment()
     for y in [fromYear..toYear]
       option = $ '<option></option>', {value: y, text: y}
       option.appendTo fragment
     yearPicker.append fragment
 
-    updateModel = ()->
+    getDateArray = ()->
       m = monthPicker.val()
       y = yearPicker.val()
       d = dayPicker.val()
-      _moment = moment [y, m, d]
-      ngModelCtrl.$setViewValue _moment.valueOf()
+      return [y, m, d]
+
+    updateModel = ()->
+      dateArray = getDateArray()
+      date = moment [y, m, d]
+      ngModelCtrl.$setViewValue date.valueOf()
     
+    updatePicker = (input)->
+      if angular.isArray input
+        date = moment [input[0], input[1]]
+        days = date.daysInMonth()
+        options = dayPicker.children('option')
+        options.css 'display', 'inline'
+        toBeHidden = options.slice days
+        toBeHidden.css 'display', 'none'
+        d = parseInt input[2]
+        if d > days then d = days
+        dayPicker.val d
+      else if angular.isNumber input
+        date = moment input
+        y = date.year()
+        m = date.month()
+        d = date.date()
+        yearPicker.val y
+        monthPicker.val m
+        dayPicker.val d
+      return
+
     ngModelCtrl = ctrls[0];
     if not ngModelCtrl.$modelValue
       updateModel()
+    else
+      mills = ngModelCtrl.$modelValue
+      updatePicker mills
+    ngModelCtrl.$render = ()->
+      mills = ngModelCtrl.$modelValue
+      updatePicker mills
 
-    updatePicker = ()->
-      m = monthPicker.val()
-      y = yearPicker.val()
-      d = dayPicker.val()
-      _moment = moment [y, m]
-      days = _moment.daysInMonth()
-      options = dayPicker.children('option')
-      options.css 'display', 'inline'
-      toBeHidden = options.slice days
-      toBeHidden.css 'display', 'none'
-      d = parseInt d
-      if d > days then d = days
-      dayPicker.val d
+    monthPicker.change ()->
+      dateArray = getDateArray()
+      updatePicker dateArray
       updateModel()
-      return
+    
+    yearPicker.change ()->
+      dateArray = getDateArray()
+      updatePicker dateArray
+      updateModel()
 
-    monthPicker.change updatePicker
-    yearPicker.change updatePicker
     dayPicker.change updateModel
 
     return
