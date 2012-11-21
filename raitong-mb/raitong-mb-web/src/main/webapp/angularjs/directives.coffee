@@ -130,6 +130,11 @@ d.directive 'datePicker', ()->
       mills = ngModelCtrl.$modelValue
       updatePicker mills
 
+    disableAll = scope.$eval attrs.disableAll
+    if disableAll
+      $('select', elements).attr 'disabled', 'disabled'
+      ngModelCtrl.$setViewValue undefined
+
     monthPicker.change ()->
       dateArray = getDateArray()
       updatePicker dateArray

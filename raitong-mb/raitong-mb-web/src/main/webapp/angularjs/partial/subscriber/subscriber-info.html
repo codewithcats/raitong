@@ -19,6 +19,10 @@
 			<p class="info" ng-class="getInfoClass(subscriber.getReadableGender())">{{displayInfo(subscriber.getReadableGender())}}</p>
 			<strong>Nationality</strong>
 			<p class="info" ng-class="getInfoClass(subscriber.nationality)">{{displayInfo(subscriber.nationality)}}</p>
+			<strong>Birth Date</strong>
+			<p class="info" ng-class="getInfoClass(subscriber.birthday)">
+				{{displayBirthday(subscriber.birthday)}}
+			</p>
 		</div>
 		<div class="span4">
 			<h4>2. Contact Information</h4>

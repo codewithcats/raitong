@@ -23,6 +23,7 @@ CreateSubscriberCtrl = ($scope, $http, $location)->
   $scope.mode = 'create'
   $scope.birthdayToYear = moment().year()
   $scope.subscriber = new Subscriber
+  $scope.notSpecificBD = yes
   $scope.create = (s)->
     req = $http.post 'subscribers', s
     req.success (subscriber) ->
@@ -36,6 +37,9 @@ SubscriberInfoCtrl = ($scope, $routeParams, SubscriberService)->
     return
   $scope.displayInfo = (info)-> info || 'No Information'
   $scope.getInfoClass = (info)-> 'info-undefined' if !info
+  $scope.displayBirthday = (millis)->
+    if not millis then return 'No Information'
+    moment(millis).format 'Do MMMM YYYY'
   return
 SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService'] 
 

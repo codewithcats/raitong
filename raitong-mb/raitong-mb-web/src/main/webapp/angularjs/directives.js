@@ -65,7 +65,7 @@ d.directive('datePicker', function() {
     restrict: 'A',
     require: ['ngModel'],
     link: function(scope, elements, attrs, ctrls) {
-      var dayPicker, fragment, fromYear, getDateArray, m, mills, monthPicker, ngModelCtrl, option, toYear, updateModel, updatePicker, y, yearPicker, _i, _j, _k, _len, _ref;
+      var dayPicker, disableAll, fragment, fromYear, getDateArray, m, mills, monthPicker, ngModelCtrl, option, toYear, updateModel, updatePicker, y, yearPicker, _i, _j, _k, _len, _ref;
       dayPicker = $('.day', elements);
       monthPicker = $('.month', elements);
       yearPicker = $('.year', elements);
@@ -191,6 +191,11 @@ d.directive('datePicker', function() {
         mills = ngModelCtrl.$modelValue;
         return updatePicker(mills);
       };
+      disableAll = scope.$eval(attrs.disableAll);
+      if (disableAll) {
+        $('select', elements).attr('disabled', 'disabled');
+        ngModelCtrl.$setViewValue(void 0);
+      }
       monthPicker.change(function() {
         var dateArray;
         dateArray = getDateArray();

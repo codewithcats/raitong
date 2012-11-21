@@ -35,6 +35,7 @@ CreateSubscriberCtrl = function($scope, $http, $location) {
   $scope.mode = 'create';
   $scope.birthdayToYear = moment().year();
   $scope.subscriber = new Subscriber;
+  $scope.notSpecificBD = true;
   return $scope.create = function(s) {
     var req;
     req = $http.post('subscribers', s);
@@ -58,6 +59,12 @@ SubscriberInfoCtrl = function($scope, $routeParams, SubscriberService) {
     if (!info) {
       return 'info-undefined';
     }
+  };
+  $scope.displayBirthday = function(millis) {
+    if (!millis) {
+      return 'No Information';
+    }
+    return moment(millis).format('Do MMMM YYYY');
   };
 };
 
