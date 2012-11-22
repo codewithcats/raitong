@@ -23,12 +23,15 @@
             <select class="year"></select>
           </div>
       <div>
+      <label>Expected Revenue</label>
+      <input type="text" ng-model="subscription.expectedRevenue" >
       <label>Paid Date <span class="inlineCheckbox"><input class="input" type="checkbox" ng-model="notPaid"/> No Payment</span></label>
       <div date-picker ng-model="subscription.paidDate" from-year="fromYear" to-year="paidDateToYear" disable-all="notPaid" class="datePicker">
-            <select class="day"></select>
-            <select class="month"></select>
-            <select class="year"></select>
-          </div>
+        <select class="day"></select>
+        <select class="month"></select>
+        <select class="year"></select>
+      </div>
+
       <div>
         <div class="form-actions">
           <button 

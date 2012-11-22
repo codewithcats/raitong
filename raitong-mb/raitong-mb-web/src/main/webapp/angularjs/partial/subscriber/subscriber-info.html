@@ -57,6 +57,7 @@
 							<th>#</th>
 							<th>Start Date</th>
 							<th>Months</th>
+							<th>Expected Revenue</th>
 							<th>Paid Date</th>
 						</tr>
 					</thead>
@@ -65,6 +66,7 @@
 							<td>{{$index+1}}</td>
 							<td>{{displayDate(s.startingDate)}}</td>
 							<td>{{s.months}}</td>
+							<td>{{displayMoney(s.expectedRevenue)}}</td>
 							<td>{{displayDate(s.paidDate, 'No Payment')}}</td>
 						</tr>
 					</tbody>

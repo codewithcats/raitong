@@ -69,6 +69,12 @@ SubscriberInfoCtrl = function($scope, $routeParams, SubscriberService) {
     }
     return moment(millis).format('Do MMMM YYYY');
   };
+  $scope.displayMoney = function(money) {
+    if (angular.isNumber(money === false)) {
+      return 'No Information';
+    }
+    return money.toFixed(2);
+  };
 };
 
 SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService'];
