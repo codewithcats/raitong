@@ -1,6 +1,7 @@
 package com.raitongorganicsfarm.app.mb.entity;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -36,6 +37,11 @@ public class Subscriber {
 	@DBRef
 	private List<Subscription> subscriptions;
 	private Date createdDate;
+	
+	public boolean addSubscriptions(Subscription subscription) {
+		if(this.subscriptions == null) this.subscriptions = new LinkedList<Subscription>();
+		return this.subscriptions.add(subscription);
+	}
 
 	public static Subscriber fromJsonToSubscriber(String json) {
 		return new JSONDeserializer<Subscriber>()

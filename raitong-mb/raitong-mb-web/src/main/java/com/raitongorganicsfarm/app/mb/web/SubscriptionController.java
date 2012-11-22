@@ -27,7 +27,7 @@ public class SubscriptionController {
 	private Subscriber subscriber;
 	private int editIndex = 0;
 
-	@RequestMapping(method = RequestMethod.POST, value = "/subscriber/{customerNo}/subscriptions/")
+	@RequestMapping(method = RequestMethod.POST, value = "/subscribers/{customerNo}/subscriptions/**")
 	public ResponseEntity<String> create(@PathVariable String customerNo, @RequestBody String body) {
 		if (body == null) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
@@ -39,6 +39,8 @@ public class SubscriptionController {
 			}
 			Subscription subscription = jsonUtil.fromJson(body, Subscription.class);
 			subscription = this.subscriptionRepository.save(subscription);
+			subscriber.addSubscriptions(subscription);
+			this.subscriberRepository.save(subscriber);
 
 			return new ResponseEntity<String>(subscription.toJson(), HttpStatus.CREATED);
 		} catch (RuntimeException r) {
@@ -62,7 +64,7 @@ public class SubscriptionController {
 		}
 	}
 
-	@RequestMapping(method = RequestMethod.PUT, value = "/subscriber/{customerNo}/subscriptions/")
+	@RequestMapping(method = RequestMethod.PUT, value = "/subscribers/{customerNo}/subscriptions/**")
 	public ResponseEntity<String> edit(@PathVariable String customerNo, @RequestBody String body) {
 		// TODO Auto-generated method stub
 		try {
