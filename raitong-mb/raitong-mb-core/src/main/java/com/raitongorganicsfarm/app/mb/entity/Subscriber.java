@@ -37,6 +37,7 @@ public class Subscriber {
 	@DBRef
 	private List<Subscription> subscriptions;
 	private Date createdDate;
+	private String doesNotEat;
 	
 	public boolean addSubscriptions(Subscription subscription) {
 		if(this.subscriptions == null) this.subscriptions = new LinkedList<Subscription>();

@@ -107,4 +107,12 @@ privileged aspect Subscriber_Roo_JavaBean {
         this.createdDate = createdDate;
     }
     
+    public String Subscriber.getDoesNotEat() {
+        return this.doesNotEat;
+    }
+    
+    public void Subscriber.setDoesNotEat(String doesNotEat) {
+        this.doesNotEat = doesNotEat;
+    }
+    
 }

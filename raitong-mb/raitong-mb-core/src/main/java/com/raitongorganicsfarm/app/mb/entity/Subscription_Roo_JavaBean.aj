@@ -57,12 +57,4 @@ privileged aspect Subscription_Roo_JavaBean {
         this.note = note;
     }
     
-    public String Subscription.getDoesNotEat() {
-        return this.doesNotEat;
-    }
-    
-    public void Subscription.setDoesNotEat(String doesNotEat) {
-        this.doesNotEat = doesNotEat;
-    }
-    
 }

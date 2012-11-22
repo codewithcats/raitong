@@ -19,7 +19,5 @@ public class Subscription {
 	private Date paidDate;
 	private Date startingDate;
 	private String note;
-	private String doesNotEat;
-
 
 }

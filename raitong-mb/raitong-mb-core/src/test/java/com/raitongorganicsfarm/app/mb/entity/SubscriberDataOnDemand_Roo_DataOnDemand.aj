@@ -37,6 +37,7 @@ privileged aspect SubscriberDataOnDemand_Roo_DataOnDemand {
         setBirthday(obj, index);
         setCreatedDate(obj, index);
         setCustomerNo(obj, index);
+        setDoesNotEat(obj, index);
         setEmail(obj, index);
         setGender(obj, index);
         setName(obj, index);
@@ -60,6 +61,11 @@ privileged aspect SubscriberDataOnDemand_Roo_DataOnDemand {
     public void SubscriberDataOnDemand.setCreatedDate(Subscriber obj, int index) {
         Date createdDate = new GregorianCalendar(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH), Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), Calendar.getInstance().get(Calendar.SECOND) + new Double(Math.random() * 1000).intValue()).getTime();
         obj.setCreatedDate(createdDate);
+    }
+    
+    public void SubscriberDataOnDemand.setDoesNotEat(Subscriber obj, int index) {
+        String doesNotEat = "doesNotEat_" + index;
+        obj.setDoesNotEat(doesNotEat);
     }
     
     public void SubscriberDataOnDemand.setEmail(Subscriber obj, int index) {

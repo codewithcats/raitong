@@ -34,7 +34,6 @@ privileged aspect SubscriptionDataOnDemand_Roo_DataOnDemand {
     public Subscription SubscriptionDataOnDemand.getNewTransientSubscription(int index) {
         Subscription obj = new Subscription();
         setDeliveryFee(obj, index);
-        setDoesNotEat(obj, index);
         setExpectedRevenue(obj, index);
         setMonths(obj, index);
         setNote(obj, index);
@@ -46,11 +45,6 @@ privileged aspect SubscriptionDataOnDemand_Roo_DataOnDemand {
     public void SubscriptionDataOnDemand.setDeliveryFee(Subscription obj, int index) {
         BigDecimal deliveryFee = BigDecimal.valueOf(index);
         obj.setDeliveryFee(deliveryFee);
-    }
-    
-    public void SubscriptionDataOnDemand.setDoesNotEat(Subscription obj, int index) {
-        String doesNotEat = "doesNotEat_" + index;
-        obj.setDoesNotEat(doesNotEat);
     }
     
     public void SubscriptionDataOnDemand.setExpectedRevenue(Subscription obj, int index) {
