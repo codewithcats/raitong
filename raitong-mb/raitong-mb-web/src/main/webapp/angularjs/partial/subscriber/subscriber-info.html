@@ -59,6 +59,8 @@
 							<th>Months</th>
 							<th>Expected Revenue</th>
 							<th>Paid Date</th>
+							<th>Delivery Fee</th>
+							<th style="width:300px;">Note</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -68,6 +70,8 @@
 							<td>{{s.months}}</td>
 							<td>{{displayMoney(s.expectedRevenue)}}</td>
 							<td>{{displayDate(s.paidDate, 'No Payment')}}</td>
+							<td>{{displayMoney(s.deliveryFee)}}</td>
+							<td>{{s.note}}</td>
 						</tr>
 					</tbody>
 				</table>

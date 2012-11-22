@@ -42,7 +42,7 @@ SubscriberInfoCtrl = ($scope, $routeParams, SubscriberService)->
     if not millis then return nullMsg
     moment(millis).format 'Do MMMM YYYY'
   $scope.displayMoney = (money)->
-    if angular.isNumber money is no then return 'No Information'
+    if angular.isNumber(money) is no then return 'No Information'
     money.toFixed 2
   return
 SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService'] 
