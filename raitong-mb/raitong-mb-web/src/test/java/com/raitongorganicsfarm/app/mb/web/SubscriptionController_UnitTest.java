@@ -1,7 +1,6 @@
 package com.raitongorganicsfarm.app.mb.web;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.junit.Assert.*;
 
 import java.util.LinkedList;
@@ -42,6 +41,7 @@ public class SubscriptionController_UnitTest {
 		this.subscriptionController.setSubscriptionRepository(repo);
 
 		Subscriber subscriber = createSubscriberWithRandomId(2);
+		
 		String customerNo = subscriber.getCustomerNo();
 		SubscriberRepository subscriberRepository = mock(SubscriberRepository.class);
 		when(subscriberRepository.findByCustomerNo(customerNo)).thenReturn(subscriber);
@@ -54,6 +54,7 @@ public class SubscriptionController_UnitTest {
 		Subscriber actualSubscriber = this.subscriptionController.getSubscriber();
 		assertNotNull(actualSubscriber);
 		assertEquals(subscriber, actualSubscriber);
+		verify(subscriberRepository).save(subscriber);
 	}
 
 	@Test
