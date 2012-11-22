@@ -37,8 +37,9 @@ SubscriberInfoCtrl = ($scope, $routeParams, SubscriberService)->
     return
   $scope.displayInfo = (info)-> info || 'No Information'
   $scope.getInfoClass = (info)-> 'info-undefined' if !info
-  $scope.displayDate = (millis)->
-    if not millis then return 'No Information'
+  $scope.displayDate = (millis, nullMsg)->
+    if not nullMsg then nullMsg = 'No Information'
+    if not millis then return nullMsg
     moment(millis).format 'Do MMMM YYYY'
   return
 SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService'] 

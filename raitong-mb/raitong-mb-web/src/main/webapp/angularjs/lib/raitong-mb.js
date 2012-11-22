@@ -32,4 +32,7 @@ Subscriber = function(subscriber) {
   $.extend(true, this, subscriber || {});
 };
 
-Subscription = function() {};
+Subscription = function(subscription) {
+  this.months = 1;
+  return $.extend(true, this, subscription || {});
+};

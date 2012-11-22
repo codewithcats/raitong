@@ -60,9 +60,12 @@ SubscriberInfoCtrl = function($scope, $routeParams, SubscriberService) {
       return 'info-undefined';
     }
   };
-  $scope.displayDate = function(millis) {
+  $scope.displayDate = function(millis, nullMsg) {
+    if (!nullMsg) {
+      nullMsg = 'No Information';
+    }
     if (!millis) {
-      return 'No Information';
+      return nullMsg;
     }
     return moment(millis).format('Do MMMM YYYY');
   };

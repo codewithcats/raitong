@@ -23,4 +23,6 @@ Subscriber = (subscriber)->
   $.extend true, this, subscriber or {}
   return
 
-Subscription = ()->
+Subscription = (subscription)->
+  this.months = 1
+  $.extend true, this, subscription or {}
