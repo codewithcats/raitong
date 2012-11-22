@@ -5,7 +5,7 @@
 	<groupId>com.raitongorganicsfarm.app.mb.web</groupId>
 	<artifactId>raitong-mb-web</artifactId>
 	<packaging>war</packaging>
-	<version>0.3.1.BUILD-SNAPSHOT</version>
+	<version>0.3.2.BUILD-SNAPSHOT</version>
 	<name>raitong-mb-web</name>
 	<properties>
 		<aspectj.version>1.7.0.RC1</aspectj.version>
@@ -215,7 +215,7 @@
 		<dependency>
 			<groupId>com.raitongorganicsfarm.app.mb</groupId>
 			<artifactId>raitong-mb-core</artifactId>
-			<version>0.3.1.BUILD-SNAPSHOT</version>
+			<version>0.3.2.BUILD-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>

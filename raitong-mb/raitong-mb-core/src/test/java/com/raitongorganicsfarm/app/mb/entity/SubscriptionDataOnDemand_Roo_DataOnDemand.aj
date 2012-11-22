@@ -3,10 +3,10 @@
 
 package com.raitongorganicsfarm.app.mb.entity;
 
-import com.raitongorganicsfarm.app.mb.entity.Money;
 import com.raitongorganicsfarm.app.mb.entity.Subscription;
 import com.raitongorganicsfarm.app.mb.entity.SubscriptionDataOnDemand;
 import com.raitongorganicsfarm.app.mb.repository.SubscriptionRepository;
+import java.math.BigDecimal;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,7 +44,7 @@ privileged aspect SubscriptionDataOnDemand_Roo_DataOnDemand {
     }
     
     public void SubscriptionDataOnDemand.setDeliveryFee(Subscription obj, int index) {
-        Money deliveryFee = null;
+        BigDecimal deliveryFee = BigDecimal.valueOf(index);
         obj.setDeliveryFee(deliveryFee);
     }
     
@@ -54,7 +54,7 @@ privileged aspect SubscriptionDataOnDemand_Roo_DataOnDemand {
     }
     
     public void SubscriptionDataOnDemand.setExpectedRevenue(Subscription obj, int index) {
-        Money expectedRevenue = null;
+        BigDecimal expectedRevenue = BigDecimal.valueOf(index);
         obj.setExpectedRevenue(expectedRevenue);
     }
     

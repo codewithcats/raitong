@@ -4,7 +4,7 @@
     <groupId>com.raitongorganicsfarm.app.mb</groupId>
     <artifactId>raitong-mb-core</artifactId>
     <packaging>jar</packaging>
-    <version>0.3.1.BUILD-SNAPSHOT</version>
+    <version>0.3.2.BUILD-SNAPSHOT</version>
     <name>raitong-mb-core</name>
     <properties>
         <aspectj.version>1.7.0.RC1</aspectj.version>

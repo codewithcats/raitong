@@ -3,8 +3,8 @@
 
 package com.raitongorganicsfarm.app.mb.entity;
 
-import com.raitongorganicsfarm.app.mb.entity.Money;
 import com.raitongorganicsfarm.app.mb.entity.Subscription;
+import java.math.BigDecimal;
 import java.util.Date;
 
 privileged aspect Subscription_Roo_JavaBean {
@@ -17,19 +17,19 @@ privileged aspect Subscription_Roo_JavaBean {
         this.months = months;
     }
     
-    public Money Subscription.getExpectedRevenue() {
+    public BigDecimal Subscription.getExpectedRevenue() {
         return this.expectedRevenue;
     }
     
-    public void Subscription.setExpectedRevenue(Money expectedRevenue) {
+    public void Subscription.setExpectedRevenue(BigDecimal expectedRevenue) {
         this.expectedRevenue = expectedRevenue;
     }
     
-    public Money Subscription.getDeliveryFee() {
+    public BigDecimal Subscription.getDeliveryFee() {
         return this.deliveryFee;
     }
     
-    public void Subscription.setDeliveryFee(Money deliveryFee) {
+    public void Subscription.setDeliveryFee(BigDecimal deliveryFee) {
         this.deliveryFee = deliveryFee;
     }
     
