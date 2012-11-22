@@ -1,6 +1,13 @@
 body {
 	padding-bottom: 12px;
 }
+label .inlineCheckbox {
+	font-size: 0.8em;
+}
+label .inlineCheckbox .input {
+	margin-left:12px;
+	margin-bottom:3px;
+}
 .navbar-inner {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;

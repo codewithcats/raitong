@@ -9,7 +9,22 @@
   </div>
   <div class="row">
     <form name="createSubscriptionForm" novalidate class="span12">
-      
+      <label>Months</label>
+      <input type="text" ng-model="subscription.months" />
+      <label>Start Date <span class="inlineCheckbox"><input class="input" type="checkbox" ng-model="notSpecificStartingDate"/> Not Specific</span></label>
+      <div date-picker ng-model="subscription.startingDate" from-year="fromYear" to-year="toYear" disable-all="notSpecificStartingDate" class="datePicker">
+            <select class="day"></select>
+            <select class="month"></select>
+            <select class="year"></select>
+          </div>
+      <div>
+        <div class="form-actions">
+          <button ng-click="createSubscription(subscription)" class="btn btn-primary">
+            <i class="icon-ok">&nbsp;</i>Create
+          </button>
+          <a href="#/subscribers/{{subscriber.customerNo}}" class="btn">Cancel</a>
+        </div>
+      </div>
     </form>
   </div>
 </div>

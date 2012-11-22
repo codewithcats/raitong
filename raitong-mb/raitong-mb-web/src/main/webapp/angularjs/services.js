@@ -24,3 +24,14 @@ s.factory('SubscriberService', function($resource) {
   };
   return $resource(url, {}, actions);
 });
+
+s.factory('SubscriptionService', function($resource) {
+  var actions, url;
+  url = 'subscribers/:customerNo/subscriptions';
+  actions = {
+    create: {
+      method: 'POST'
+    }
+  };
+  return $resource(url, {}, actions);
+});

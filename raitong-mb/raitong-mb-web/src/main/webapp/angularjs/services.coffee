@@ -6,3 +6,9 @@ s.factory 'SubscriberService', ($resource)->
     get: {method: 'GET', params: {customerNo: '@customerNo'}}
     update: {method: 'POST', params: {customerNo: '@customerNo'}}
   return $resource url, {}, actions
+
+s.factory 'SubscriptionService', ($resource)->
+  url = 'subscribers/:customerNo/subscriptions'
+  actions =
+    create: {method: 'POST'}
+  return $resource url, {}, actions

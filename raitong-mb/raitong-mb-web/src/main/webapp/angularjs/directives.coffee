@@ -79,9 +79,9 @@ d.directive 'datePicker', ()->
     monthPicker.append fragment
 
     fromYear = scope.$eval attrs.fromYear
-    if not fromYear then fromYear = moment().year()
+    if not fromYear then fromYear = moment().year() - 80
     toYear = scope.$eval attrs.toYear
-    if not toYear then toYear = moment().year() - 80
+    if not toYear then toYear = moment().year()
     fragment = document.createDocumentFragment()
     for y in [fromYear..toYear]
       option = $ '<option></option>', {value: y, text: y}
@@ -130,10 +130,20 @@ d.directive 'datePicker', ()->
       mills = ngModelCtrl.$modelValue
       updatePicker mills
 
-    disableAll = scope.$eval attrs.disableAll
-    if disableAll
+    disablePicker = ()->
       $('select', elements).attr 'disabled', 'disabled'
       ngModelCtrl.$setViewValue undefined
+
+    disableAll = scope.$eval attrs.disableAll
+    if disableAll then disablePicker()
+
+    scope.$watch attrs.disableAll, (value)->
+      if value then disablePicker()
+      else
+        $('select', elements).removeAttr 'disabled'
+        dateArray = getDateArray()
+        updatePicker dateArray
+        updateModel()
 
     monthPicker.change ()->
       dateArray = getDateArray()

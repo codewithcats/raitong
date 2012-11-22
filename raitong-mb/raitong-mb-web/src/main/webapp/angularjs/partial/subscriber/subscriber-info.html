@@ -21,7 +21,7 @@
 			<p class="info" ng-class="getInfoClass(subscriber.nationality)">{{displayInfo(subscriber.nationality)}}</p>
 			<strong>Birth Date</strong>
 			<p class="info" ng-class="getInfoClass(subscriber.birthday)">
-				{{displayBirthday(subscriber.birthday)}}
+				{{displayDate(subscriber.birthday)}}
 			</p>
 		</div>
 		<div class="span4">
@@ -39,6 +39,35 @@
 			<p class="info" ng-class="getInfoClass(subscriber.note)">{{displayInfo(subscriber.note)}}</p>
 			<strong>Referee</strong>
 			<p class="info" ng-class="getInfoClass(subscriber.referee)">{{displayInfo(subscriber.referee)}}</p>
+		</div>
+		<div class="span12">
+			<h4>4. Subscription Information
+				&nbsp;
+				<small>
+					<a href="#/subscribers/{{subscriber.customerNo}}/subscriptions/create">
+						<i class="icon-plus">&nbsp;</i>Add Subscription		
+					</a>
+				</small>
+			</h4>
+			<div ng-switch on="subscriber.haveSubscriptions()">
+				<p ng-switch-when="false">No Subscription</p>
+				<table ng-switch-when="true" class="table table-striped">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Start Date</th>
+							<th>Months</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="subscription" ng-repeat="s in subscriber.subscriptions">
+							<td>{{$index+1}}</td>
+							<td>{{displayDate(s.startingDate)}}</td>
+							<td>{{s.months}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
 	<div class="row">

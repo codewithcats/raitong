@@ -60,7 +60,7 @@ SubscriberInfoCtrl = function($scope, $routeParams, SubscriberService) {
       return 'info-undefined';
     }
   };
-  $scope.displayBirthday = function(millis) {
+  $scope.displayDate = function(millis) {
     if (!millis) {
       return 'No Information';
     }
@@ -74,7 +74,10 @@ EditSubscriberCtrl = function($scope, $routeParams, $location, SubscriberService
   var subscriber;
   $scope.mode = 'edit';
   subscriber = SubscriberService.get($routeParams, function() {
-    return $scope.subscriber = new Subscriber(subscriber);
+    $scope.subscriber = new Subscriber(subscriber);
+    if (!$scope.subscriber.birthday) {
+      return $scope.notSpecificBD = true;
+    }
   });
   return $scope.save = function(s) {
     SubscriberService.update(s, function() {

@@ -65,7 +65,7 @@ d.directive('datePicker', function() {
     restrict: 'A',
     require: ['ngModel'],
     link: function(scope, elements, attrs, ctrls) {
-      var dayPicker, disableAll, fragment, fromYear, getDateArray, m, mills, monthPicker, ngModelCtrl, option, toYear, updateModel, updatePicker, y, yearPicker, _i, _j, _k, _len, _ref;
+      var dayPicker, disableAll, disablePicker, fragment, fromYear, getDateArray, m, mills, monthPicker, ngModelCtrl, option, toYear, updateModel, updatePicker, y, yearPicker, _i, _j, _k, _len, _ref;
       dayPicker = $('.day', elements);
       monthPicker = $('.month', elements);
       yearPicker = $('.year', elements);
@@ -129,11 +129,11 @@ d.directive('datePicker', function() {
       monthPicker.append(fragment);
       fromYear = scope.$eval(attrs.fromYear);
       if (!fromYear) {
-        fromYear = moment().year();
+        fromYear = moment().year() - 80;
       }
       toYear = scope.$eval(attrs.toYear);
       if (!toYear) {
-        toYear = moment().year() - 80;
+        toYear = moment().year();
       }
       fragment = document.createDocumentFragment();
       for (y = _k = fromYear; fromYear <= toYear ? _k <= toYear : _k >= toYear; y = fromYear <= toYear ? ++_k : --_k) {
@@ -191,11 +191,25 @@ d.directive('datePicker', function() {
         mills = ngModelCtrl.$modelValue;
         return updatePicker(mills);
       };
+      disablePicker = function() {
+        $('select', elements).attr('disabled', 'disabled');
+        return ngModelCtrl.$setViewValue(void 0);
+      };
       disableAll = scope.$eval(attrs.disableAll);
       if (disableAll) {
-        $('select', elements).attr('disabled', 'disabled');
-        ngModelCtrl.$setViewValue(void 0);
+        disablePicker();
       }
+      scope.$watch(attrs.disableAll, function(value) {
+        var dateArray;
+        if (value) {
+          return disablePicker();
+        } else {
+          $('select', elements).removeAttr('disabled');
+          dateArray = getDateArray();
+          updatePicker(dateArray);
+          return updateModel();
+        }
+      });
       monthPicker.change(function() {
         var dateArray;
         dateArray = getDateArray();

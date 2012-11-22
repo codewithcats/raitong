@@ -20,7 +20,7 @@
 					</div>
 					<label>Nationality</label>
 					<input class="last-input" type="text" ng-model="subscriber.nationality"/>
-					<label>Birthday<input type="checkbox" ng-model="notSpecificBD" style="margin-left:12px;margin-bottom:3px;"/> <span style="font-size: 0.8em;">Not Specific</span></label>
+					<label>Birthday<span class="inlineCheckbox"><input type="checkbox" ng-model="notSpecificBD" class="input" /> Not Specific</span></label>
 					<div date-picker ng-model="subscriber.birthday" disable-all="notSpecificBD" class="datePicker">
 						<select class="day"></select>
 						<select class="month"></select>

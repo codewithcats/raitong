@@ -3,11 +3,24 @@
 
 var CreateSubscriptionCtrl;
 
-CreateSubscriptionCtrl = function($scope, $routeParams, SubscriberService) {
+CreateSubscriptionCtrl = function($scope, $location, $routeParams, SubscriberService, SubscriptionService) {
   var subscriber;
-  return subscriber = SubscriberService.get($routeParams, function() {
+  $scope.fromYear = moment().year() - 1;
+  $scope.toYear = moment().year() + 4;
+  subscriber = SubscriberService.get($routeParams, function() {
     return $scope.subscriber = new Subscriber(subscriber);
   });
+  $scope.subscription = new Subscription;
+  return $scope.createSubscription = function(s) {
+    var customerNo, _subscription;
+    customerNo = $routeParams.customerNo;
+    return _subscription = SubscriptionService.create({
+      customerNo: customerNo
+    }, s, function() {
+      $scope.subscription = _subscription;
+      return $location.path("/subscribers/" + $scope.subscriber.customerNo);
+    });
+  };
 };
 
-CreateSubscriptionCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService'];
+CreateSubscriptionCtrl.$inject = ['$scope', '$location', '$routeParams', 'SubscriberService', 'SubscriptionService'];

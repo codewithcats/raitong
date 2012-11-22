@@ -17,6 +17,10 @@ Subscriber = (subscriber)->
   this.setGender = (gender)->
     this.gender = gender
     return
+  this.haveSubscriptions = ()->
+    !!this.subscriptions and !!this.subscriptions.length
 
   $.extend true, this, subscriber or {}
   return
+
+Subscription = ()->

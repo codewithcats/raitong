@@ -37,7 +37,7 @@ SubscriberInfoCtrl = ($scope, $routeParams, SubscriberService)->
     return
   $scope.displayInfo = (info)-> info || 'No Information'
   $scope.getInfoClass = (info)-> 'info-undefined' if !info
-  $scope.displayBirthday = (millis)->
+  $scope.displayDate = (millis)->
     if not millis then return 'No Information'
     moment(millis).format 'Do MMMM YYYY'
   return
@@ -47,6 +47,7 @@ EditSubscriberCtrl = ($scope, $routeParams, $location, SubscriberService)->
   $scope.mode = 'edit'
   subscriber = SubscriberService.get $routeParams, ()->
     $scope.subscriber = new Subscriber subscriber
+    if not $scope.subscriber.birthday then $scope.notSpecificBD = yes
   $scope.save = (s)->
     SubscriberService.update s, ()->
       customerNo = subscriber.customerNo
