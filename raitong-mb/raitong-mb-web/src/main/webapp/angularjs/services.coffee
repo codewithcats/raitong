@@ -11,4 +11,5 @@ s.factory 'SubscriptionService', ($resource)->
   url = 'subscribers/:customerNo/subscriptions/:subscriptionId'
   actions =
     create: {method: 'POST'}
+    update: {method: 'PUT'}
   return $resource url, {}, actions

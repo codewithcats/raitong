@@ -29,6 +29,13 @@ Subscriber = function(subscriber) {
   this.haveSubscriptions = function() {
     return !!this.subscriptions && !!this.subscriptions.length;
   };
+  this.lastestSubscriptions = function() {
+    if (this.haveSubscriptions === true) {
+      return this.subscriptions[this.subscriptions.length - 1];
+    } else {
+      return void 0;
+    }
+  };
   $.extend(true, this, subscriber || {});
 };
 

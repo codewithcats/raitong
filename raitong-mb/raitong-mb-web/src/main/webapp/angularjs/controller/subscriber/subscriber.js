@@ -20,12 +20,21 @@ ListSubscriberCtrl = function($http, $scope) {
       getSubscribers();
     });
   };
-  $scope.getSubscriberBirthdayLabel = function(s) {
-    if (s.birthday) {
-      return moment(s.birthday).format('Do MMMM YYYY');
+  $scope.displayDate = function(date) {
+    if (date) {
+      return moment(date).format('Do MMMM YYYY');
     } else {
       return '';
     }
+  };
+  $scope.displayLastestSubscriptionInfo = function(s) {
+    var lsubs, subs;
+    subs = s.subscriptions;
+    if (!subs || subs.length < 1) {
+      return 'No Subscription';
+    }
+    lsubs = subs[subs.length - 1];
+    return "" + lsubs.months + " months, start: " + ($scope.displayDate(lsubs.startingDate));
   };
 };
 

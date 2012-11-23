@@ -31,6 +31,9 @@ s.factory('SubscriptionService', function($resource) {
   actions = {
     create: {
       method: 'POST'
+    },
+    update: {
+      method: 'PUT'
     }
   };
   return $resource(url, {}, actions);

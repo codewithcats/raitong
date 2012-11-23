@@ -15,8 +15,10 @@
 				<a href="#/subscribers/{{s.customerNo}}"><i class="icon-user">&nbsp;</i></a>
 			</div>
 			<span class="span3"><strong>{{s.customerNo}}</strong>&nbsp;{{s.name}}</span>
-			<span class="span3">{{s.address}}</span>
-			<span class="span3">{{getSubscriberBirthdayLabel(s)}}</span>
+			<span class="span4" ng-switch on="!!s.subscriptions && s.subscriptions.length > 0">
+				<span ng-switch-when="true">{{displayLastestSubscriptionInfo(s)}}</span>
+				<span ng-switch-when="false" style="color: #999;">{{displayLastestSubscriptionInfo(s)}}</span>
+			</span>
 		</div>
 	</div>
 </div>

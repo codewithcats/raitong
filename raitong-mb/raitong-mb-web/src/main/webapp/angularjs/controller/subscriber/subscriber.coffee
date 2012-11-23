@@ -14,8 +14,13 @@ ListSubscriberCtrl = ($http, $scope)->
       return
     return
 
-  $scope.getSubscriberBirthdayLabel = (s)->
-    return if s.birthday then moment(s.birthday).format 'Do MMMM YYYY' else ''
+  $scope.displayDate = (date)->
+    return if date then moment(date).format 'Do MMMM YYYY' else ''
+  $scope.displayLastestSubscriptionInfo = (s)->
+    subs = s.subscriptions
+    if not subs or subs.length < 1 then return 'No Subscription'
+    lsubs = subs[subs.length-1]
+    return "#{lsubs.months} months, start: #{$scope.displayDate(lsubs.startingDate)}"
   return
 ListSubscriberCtrl.$inject = ['$http', '$scope']
 

@@ -19,6 +19,11 @@ Subscriber = (subscriber)->
     return
   this.haveSubscriptions = ()->
     !!this.subscriptions and !!this.subscriptions.length
+  this.lastestSubscriptions = ()->
+    if this.haveSubscriptions is yes 
+      return this.subscriptions[this.subscriptions.length-1]
+    else
+      return undefined
 
   $.extend true, this, subscriber or {}
   return

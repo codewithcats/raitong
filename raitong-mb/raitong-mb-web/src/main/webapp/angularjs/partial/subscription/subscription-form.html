@@ -36,8 +36,8 @@
       <label>Note</label>
       <textarea ng-model="subscription.note" rows="3"></textarea>
 
-      <div>
-        <div class="form-actions">
+      <div ng-switch on="mode">
+        <div class="form-actions" ng-switch-when="create">
           <button 
             ng-click="createSubscription(subscription)"
             ng-disabled="!createSubscriptionForm.$valid" 
@@ -45,6 +45,15 @@
             <i class="icon-ok">&nbsp;</i>Create
           </button>
           <a href="#/subscribers/{{subscriber.customerNo}}" class="btn">Cancel</a>
+        </div>
+        <div class="form-actions" ng-switch-when="edit">
+          <button 
+            ng-click="saveSubscription(subscription)"
+            ng-disabled="!createSubscriptionForm.$valid" 
+            class="btn btn-primary">
+            <i class="icon-ok">&nbsp;</i>Save
+          </button>
+          <a href="#/subscribers/{{customerNo}}" class="btn">Cancel</a>
         </div>
       </div>
     </form>

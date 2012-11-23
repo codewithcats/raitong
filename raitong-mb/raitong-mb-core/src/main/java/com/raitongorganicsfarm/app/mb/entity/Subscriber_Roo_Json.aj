@@ -5,16 +5,11 @@ package com.raitongorganicsfarm.app.mb.entity;
 
 import com.raitongorganicsfarm.app.mb.entity.Subscriber;
 import flexjson.JSONDeserializer;
-import flexjson.JSONSerializer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 privileged aspect Subscriber_Roo_Json {
-    
-    public static String Subscriber.toJsonArray(Collection<Subscriber> collection) {
-        return new JSONSerializer().exclude("*.class").serialize(collection);
-    }
     
     public static Collection<Subscriber> Subscriber.fromJsonArrayToSubscribers(String json) {
         return new JSONDeserializer<List<Subscriber>>().use(null, ArrayList.class).use("values", Subscriber.class).deserialize(json);

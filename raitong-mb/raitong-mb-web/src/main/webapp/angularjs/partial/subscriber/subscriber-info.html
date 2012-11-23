@@ -57,11 +57,11 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th style="width:24px;"></th>
-							<th style="width:120px;">Start Date</th>
+							<th style="width:48px;"></th>
+							<th style="width:128px;">Start Date</th>
 							<th>Months</th>
 							<th style="width:100px;">Expected Revenue</th>
-							<th style="width:120px;">Paid Date</th>
+							<th style="width:128px;">Paid Date</th>
 							<th style="width:100px;">Delivery Fee</th>
 							<th style="width:300px;">Note</th>
 						</tr>
@@ -72,6 +72,9 @@
 							<td>
 								<a ng-click="del(subscriber, s)" rel="tooltip" title="Delete">
 									<i class="icon-trash">&nbsp;</i>
+								</a>&nbsp;
+								<a href="#/subscribers/{{subscriber.customerNo}}/subscriptions/{{s.id}}" rel="tooltip" title="Edit">
+									<i class="icon-pencil">&nbsp;</i>
 								</a>
 							</td>
 							<td>{{displayDate(s.startingDate)}}</td>

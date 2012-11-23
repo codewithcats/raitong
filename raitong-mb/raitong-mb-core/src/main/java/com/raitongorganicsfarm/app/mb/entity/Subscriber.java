@@ -1,5 +1,6 @@
 package com.raitongorganicsfarm.app.mb.entity;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -51,5 +52,9 @@ public class Subscriber {
 
 	public String toJson() {
         return new JSONSerializer().include("subscriptions").exclude("*.class").serialize(this);
+    }
+
+	public static String toJsonArray(Collection<Subscriber> collection) {
+        return new JSONSerializer().include("subscriptions").exclude("*.class").serialize(collection);
     }
 }
