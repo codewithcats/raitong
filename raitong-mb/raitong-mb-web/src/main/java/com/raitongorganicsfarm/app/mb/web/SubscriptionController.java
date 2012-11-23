@@ -15,6 +15,7 @@ import com.raitongorganicsfarm.app.mb.entity.Subscriber;
 import com.raitongorganicsfarm.app.mb.entity.Subscription;
 import com.raitongorganicsfarm.app.mb.repository.SubscriberRepository;
 import com.raitongorganicsfarm.app.mb.repository.SubscriptionRepository;
+import com.raitongorganicsfarm.app.mb.service.SubscriptionService;
 import com.raitongorganicsfarm.app.mb.web.util.JsonUtil;
 import com.raitongorganicsfarm.app.mb.web.util.JsonUtilImpl;
 
@@ -23,6 +24,8 @@ public class SubscriptionController {
 
 	private SubscriptionRepository subscriptionRepository;
 	private SubscriberRepository subscriberRepository;
+	@Autowired
+	private SubscriptionService subscriptionService;
 	private JsonUtil<Subscription> jsonUtil = new JsonUtilImpl<Subscription>();
 	private Subscriber subscriber;
 	private int editIndex = 0;
@@ -66,7 +69,6 @@ public class SubscriptionController {
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/subscribers/{customerNo}/subscriptions/**")
 	public ResponseEntity<String> edit(@PathVariable String customerNo, @RequestBody String body) {
-		// TODO Auto-generated method stub
 		try {
 			subscriber = this.subscriberRepository.findByCustomerNo(customerNo);
 		} catch (RuntimeException r) {
@@ -95,6 +97,16 @@ public class SubscriptionController {
 		subscriptions.set(editIndex, subscription);
 		subscriber = this.subscriberRepository.save(subscriber);
 		return new ResponseEntity<String>(subscription.toJson(), HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.DELETE, value = "/subscribers/{customerNo}/subscriptions/{supscriptionId}")
+	public ResponseEntity<String> delete(@PathVariable String customerNo, @PathVariable String supscriptionId) {
+		try {
+			this.subscriptionService.delete(customerNo, supscriptionId);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity<String>(HttpStatus.OK);
 	}
 
 	@Autowired

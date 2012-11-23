@@ -31,7 +31,7 @@ CreateSubscriberCtrl = ($scope, $http, $location)->
       return
 CreateSubscriberCtrl.$inject = ['$scope', '$http', '$location']
 
-SubscriberInfoCtrl = ($scope, $routeParams, SubscriberService)->
+SubscriberInfoCtrl = ($scope, $routeParams, SubscriberService, SubscriptionService)->
   subscriber = SubscriberService.get $routeParams, ()->
     $scope.subscriber = new Subscriber subscriber
     return
@@ -44,8 +44,13 @@ SubscriberInfoCtrl = ($scope, $routeParams, SubscriberService)->
   $scope.displayMoney = (money)->
     if angular.isNumber(money) is no then return 'No Information'
     money.toFixed 2
+  $scope.del = (subscriber, subscription)->
+    SubscriptionService.delete {customerNo: subscriber.customerNo, subscriptionId: subscription.id}, ()->
+      subscriber = SubscriberService.get $routeParams, ()->
+        $scope.subscriber = new Subscriber subscriber
+        return
   return
-SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService'] 
+SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService', 'SubscriptionService'] 
 
 EditSubscriberCtrl = ($scope, $routeParams, $location, SubscriberService)->
   $scope.mode = 'edit'

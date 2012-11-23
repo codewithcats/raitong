@@ -8,7 +8,7 @@ s.factory 'SubscriberService', ($resource)->
   return $resource url, {}, actions
 
 s.factory 'SubscriptionService', ($resource)->
-  url = 'subscribers/:customerNo/subscriptions'
+  url = 'subscribers/:customerNo/subscriptions/:subscriptionId'
   actions =
     create: {method: 'POST'}
   return $resource url, {}, actions

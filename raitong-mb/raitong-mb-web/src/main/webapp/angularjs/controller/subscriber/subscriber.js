@@ -47,7 +47,7 @@ CreateSubscriberCtrl = function($scope, $http, $location) {
 
 CreateSubscriberCtrl.$inject = ['$scope', '$http', '$location'];
 
-SubscriberInfoCtrl = function($scope, $routeParams, SubscriberService) {
+SubscriberInfoCtrl = function($scope, $routeParams, SubscriberService, SubscriptionService) {
   var subscriber;
   subscriber = SubscriberService.get($routeParams, function() {
     $scope.subscriber = new Subscriber(subscriber);
@@ -75,9 +75,19 @@ SubscriberInfoCtrl = function($scope, $routeParams, SubscriberService) {
     }
     return money.toFixed(2);
   };
+  $scope.del = function(subscriber, subscription) {
+    return SubscriptionService["delete"]({
+      customerNo: subscriber.customerNo,
+      subscriptionId: subscription.id
+    }, function() {
+      return subscriber = SubscriberService.get($routeParams, function() {
+        $scope.subscriber = new Subscriber(subscriber);
+      });
+    });
+  };
 };
 
-SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService'];
+SubscriberInfoCtrl.$inject = ['$scope', '$routeParams', 'SubscriberService', 'SubscriptionService'];
 
 EditSubscriberCtrl = function($scope, $routeParams, $location, SubscriberService) {
   var subscriber;

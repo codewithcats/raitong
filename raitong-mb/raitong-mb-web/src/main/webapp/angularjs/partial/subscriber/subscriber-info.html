@@ -57,17 +57,23 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>Start Date</th>
+							<th style="width:24px;"></th>
+							<th style="width:120px;">Start Date</th>
 							<th>Months</th>
-							<th>Expected Revenue</th>
-							<th>Paid Date</th>
-							<th>Delivery Fee</th>
+							<th style="width:100px;">Expected Revenue</th>
+							<th style="width:120px;">Paid Date</th>
+							<th style="width:100px;">Delivery Fee</th>
 							<th style="width:300px;">Note</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr class="subscription" ng-repeat="s in subscriber.subscriptions">
 							<td>{{$index+1}}</td>
+							<td>
+								<a ng-click="del(subscriber, s)" rel="tooltip" title="Delete">
+									<i class="icon-trash">&nbsp;</i>
+								</a>
+							</td>
 							<td>{{displayDate(s.startingDate)}}</td>
 							<td>{{s.months}}</td>
 							<td>{{displayMoney(s.expectedRevenue)}}</td>

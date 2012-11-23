@@ -27,7 +27,7 @@ s.factory('SubscriberService', function($resource) {
 
 s.factory('SubscriptionService', function($resource) {
   var actions, url;
-  url = 'subscribers/:customerNo/subscriptions';
+  url = 'subscribers/:customerNo/subscriptions/:subscriptionId';
   actions = {
     create: {
       method: 'POST'
