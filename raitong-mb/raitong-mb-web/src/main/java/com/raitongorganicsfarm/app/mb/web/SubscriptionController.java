@@ -51,8 +51,8 @@ public class SubscriptionController {
 		}
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/subscriptions/{id}")
-	public ResponseEntity<String> info(@PathVariable String id) {
+	@RequestMapping(method = RequestMethod.GET, value = "/subscribers/{customerNo}/subscriptions/{id}")
+	public ResponseEntity<String> info(@PathVariable String customerNo, @PathVariable String id) {
 		if (id == null) {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		}
